@@ -1,0 +1,27 @@
+INSTRUCCIONES PARA LA EJECUCIÓN DEL CÓDIGO
+
+
+REQUISITOS:
+------------
+- Python 3.7 o superior instalado.
+- Instalar dependencias usando pip (si se requiere):
+    pip install bcrypt pycryptodome cryptography
+- El código fuente debe estar completamente descargado y mantener la estructura de carpetas:
+    - main.py
+    - modulos/          (contiene todos los módulos .py)
+    - json/             (se crea automáticamente; contiene usuarios.json, contactos.json, mensajes.json)
+
+
+EJECUCIÓN:
+----------
+1. Abrir una terminal o consola de comandos en la carpeta raíz del proyecto (donde está main.py).
+2. Ejecutar el siguiente comando:
+    python main.py
+
+
+FUNCIONAMIENTO:
+---------------
+- El menú principal permitirá registrarse o iniciar sesión. 
+- Una vez autenticado/a, se podrá gestionar contactos, enviar, recibir y borrar mensajes.
+- Se generan logs criptográficos en pantalla explicando cada operación relevante.
+- Los archivos de datos se actualizan automáticamente en la carpeta json/.

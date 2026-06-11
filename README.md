@@ -28,3 +28,6 @@ En este proyecto programamos en Python un sistema de navegación para que un avi
 
 ### Arquitectura de Computadores (3º)
 En este gran proyecto, nos enfocamos en el rendimiento real de la máquina, trabajando con simuladores, analizando el comportamiento de la jerarquía de memoria, entendiendo el pipelining y optimizando algoritmos en C++ para que el procesador no desperdicie ni un solo ciclo de reloj. 
+
+### Criptografía y Seguridad
+En esta práctica desarrollamos en Python una aplicación segura desde cero, aplicando todos los principios de la criptografía moderna. Implementamos sistemas de autentificación de usuarios, protegimos la provacidad de los datos integrando cifrado simétrico y garantizamos la integridad de la información mediante firmas digitales y fucniones MAC. Para ello, montamos también nuestra propia infraestructura de clave pública (PKI) con certificados digitales.
