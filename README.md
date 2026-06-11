@@ -41,3 +41,5 @@ Para esta asignatura, diseñamos e implementamos un sitio web interactivo. Prime
 ### Aprendizaje Automático (3º)
 En esta asignatura aplicamos tanto el aprendizaje supervisado como el no supervisado. Por un lado, entrenamos modelos predictivos (KNN, Árboles de Decisión, SVM) para calcular el éxito de campañas bancarias, llegando a desplegar la solución final en una app web con Streamlit. Por otro lado, utilizamos algoritmos de clustering para agrupar y clasificar distintos tipos de estrellas basándonos en sus propiedades astronómicas.
 
+### Procesadores de Lenguaje (3º)
+En este asignatura, desarrollamos un traductor completo en dos fases. Primero, un frontend que convierte un subconjunto del lenguaje C a código intermedio en LISP. Después, un backend que traduce ese LISP a notación postfija para su ejecución final. Para ello, hemos usado el compilador de Bison.
