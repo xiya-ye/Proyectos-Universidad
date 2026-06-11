@@ -22,3 +22,6 @@ Aquí aprendimos qué va por debajo de nuestro ordenador. Programando en C sobre
 
 ### Desarrollo de Software (2º)
 En esta asignatura programamos funciones de un sistema de gestión bancaria (transferencias, ingresos y cálculo de saldos), pero automatizando la ejecución de pruebas con PyBuilder. Aprendimos a trabajar en equipo usando GiyHub. En estos proyectos aplicamos las técnicas de Refactoring y Diseño Simple para mejorar su estructura sin alterar su funcionamiento.
+
+### Inteligencia Artificial (2º)
+En este proyecto programamos en Python un sistema de navegación para que un avión furtivo sobrevolara zonas críticas esquivando radares. Para lograrlo, calculamos y generamos mapas de probabilidad de detección usando NumPy, convertimos ese terreno en un grafo con NetworkX e implementamos el algoritmo de búsqueda A*, diseñando nuestras propias heurísticas admisibles para calcular matemáticamente la ruta más segura.
