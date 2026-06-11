@@ -16,3 +16,6 @@ En la primera práctica programamos en ensamblador (RISC-V) un calculadora de in
 
 ### Ficheros y Bases de Datos (2º)
 En esta asignatura aprendimos a realizar un diseño relacional y a hacer la carga inicial de datos. Luego avanzamos hacia la programación de su operatividad mediante consultas, vistas, procedimientos y disparadores en PL/SQL, y finalemente realizamos una práctica sobre el diseño físico para optimizar el rendimiento del sistema.
+
+### Sistemas Operativos (2º)
+Aquí aprendimos qué va por debajo de nuestro ordenador. Programando en C sobre Linux, llamamos al sistema POSIX para la gestión de ficheros, construimos nuestro propio intérprete de comandos y un simulador multihilo donde usamos semáforos, variables de condición y mutexes para controlar la concurrencia.
