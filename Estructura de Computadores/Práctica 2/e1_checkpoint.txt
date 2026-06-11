@@ -1,0 +1,265 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "node_nteract",
+      "language": "javascript",
+      "display_name": "Node.js (nteract)"
+    },
+    "kernel_info": {
+      "name": "node_nteract"
+    },
+    "language_info": {
+      "name": "javascript",
+      "version": "8.2.1",
+      "mimetype": "application/javascript",
+      "file_extension": ".js"
+    },
+    "title": "WepSIM ",
+    "nteract": {
+      "version": "nteract-on-jupyter@2.0.0"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": "## mode",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "ep",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "mode",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## firmware",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "lx RR1 U32 {\n   co=100110,\n   nwords=2,\n   RR1=reg(25,21),\n   U32=inm(63,32),\n   {\n\t\t\t\t(T2, C0)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# MAR <-- PC\n\t\t\t\t(Ta, R, BW=11, M1=1, C1, M2=1, C2)\t\t\t\t\t\t# MBR <-- MP[MAR], PC <-- PC + 4\n\t\t\t\t(T1, SelC=10101, MR=0, LC, A0=1, B=1, C=0)\t\t# BR[R1] <-- MBR, salto a fetch\n   }\n}\n\ncall U32 {\n   co=100001,\n   nwords=2,\n   U32=inm(63,32)\n   {\n      \t# RT1 <-- U32\n        (T2, C0)\t\t\t\t\t\t\t\t\t# MAR <-- PC\n        (Ta, R, BW=11, M1, C1)\t\t# MBR <-- MP[MAR]\n        (T1, C4, M2=1, C2) \t\t\t\t# RT1 <-- MBR, PC <-- PC + 4\n     \n       # SP <-- SP - 4\n       (SelA=10,MR=1, MA=0, MB=10, SelCop=01011, MC, T6, SelC=10, LC) \t# SP <-- SP-4\n\n       # MP[SP] <-- PC \n       (T2, M1=0, C1)\t\t\t\t\t\t\t# MBR <-- PC\n       (SelA=10, MR=1, T9, C0)\t\t# MAR <-- SP\n       (W, Ta, Td, BW=11) \t\t\t\t# MP[MAR] <-- MBR\n\n       # PC <-- RT1\n       (T4, M2=0, C2, A0=1, B=1, C=0)\t\t\t# PC <-- RT1, salto a fetch\n   }\n}\n\n\nreturn {\n   co=100010,\n   nwords=1,\n   {\n       # PC <-- MP[SP]\n       (SelA=10, MR=1, T9, C0)\t\t\t# MAR <-- SP\n       (Ta, R, BW=11, M1=1, C1)\t\t\t# MBR <-- MP[MAR]\n       (T1, M2=0, C2)\t\t\t\t\t\t\t\t# PC <-- MBR\n       \n       # SP ← SP + 4\n       (SelA=10,MR=1, MA=0, MB=10, SelCop=1010, MC, T6, SelC=10, LC, A0=1, B=1, C=0)\t\t# SP <-- SP + 4, salto a fetch\n   }\n}\n\n\nstop {\n   co=100011,\n   nwords=1,\n   {\n       # SP <-- 0x00\n       (SelA=0, MR=1, T9, SelC=10, LC)\t\t\t\t\t\t\t\t\t\t# SP <-- R0\n  \n     \t # PC <-- 0x00 (R0)\n       (SelA=0, MR=1, T9, M2=0, C2, A0=1, B=1, C=0)\t\t\t\t# PC <-- R0, salto a fetch\n   }\n}\n\n\n\nvfill RR1 (RR2) U8 {\n   co=100100,\n   nwords=1,\n   RR1=reg(25,21)\n   RR2=reg(20,16)\n   U8=inm(7,0)\n   {\n       (T8, C5)\t\t\t\t\t\t\t\t\t\t# RT2 <-- SR\n     \t (SelA=0, MR=1, T9, C4)\t\t\t# RT1 (i) <-- 0\n\n loop1:(SelB=10101, MA=1, SelCop=1011, MC=1, SelP=11, M7=1, C7)\t\t\t\t# SR <-- RR1 - RT1\n       (A0=0, B=0, C=110, MADDR=fin1)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# beq SR 0 fin (=)\n                                                                                              \n       # addr ← BR[RR2] + i\n  \t\t (SelB=10000, MA=1, SelCop=1010, MC=1, T6, C0)\t\t# MAR <-- RR2 + RT1\n  \n  \t\t # MP[addr] ← U8\n       (SE=1, SIZE=1000, T3, C1)\t\t# MBR <-- U8\n\t\t\t (Ta, Td, W, BW=00) \t\t\t\t\t# MAR[addr] <-- MBR\n       \n     \t # RT1 <-- RT1 + 1\n\t\t\t (MA=1, MB=11, SelCop=1010, MC=1, T6, C4)\t\t\t# RT1 <-- RT1 (i) + 1\n       (A0=0, B=1, C=0, MADDR=loop1)\t\t\t\t\t\t\t\t# salto a loop2\n       \n  fin1:\n       (SelA=10101, SelB=10000, SelCop=1010, MC=1, T6, SelC=10000, LC=1) \t\t# RR2 <-- RR1 + RR2\n       (SelA=0, MR=1, T9, C4) \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT3 <-- R0\n       (T4, SelC=10101, LC=1)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RR1 <-- RT1\n       (T5, C7, A0=1, B=1, C=0)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# SR <-- RT2, salto a fetch\n   }\n}\n\n  \n  \nvadd RR1 (RR2) RR3 {\n   co=100101\n   nwords=1\n   RR1=reg(25,21)\n   RR2=reg(20,16)\n   RR3=reg(15,11)\n\n   {\n       (T8, SelC=110, MR=1, LC=1, MA=1, MB=11, SelCop=1100, MC=1, C6)\t\t# RT1 <-- SR, RT3 <-- RT1\n     \t (SelA=0, MR=1, T9, C4)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT1 (i) <-- 0\n\n loop2:(SelB=10101, MA=1, SelCop=1011, MC=1, SelP=11, M7=1, C7)\t\t\t# SR <-- RR1 - RT1\n       (A0=0, B=0, C=110, MADDR=fin2)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# beq SR 0 fin (=)\n                                                                                              \n       # addr ← BR[RR2] + i\n  \t\t (SelB=10000, MA=1, SelCop=1010, MC=1, T6, C0)\t\t# MAR <-- RR2 + RT1\n  \n  \t\t # MEM[addr] ← MEM[addr] + RR3\n       (Ta, R, BW=00, M1=1, C1)\t\t\t\t\t\t\t\t\t\t\t\t\t# MBR <-- MP[addr]\n       (T1, C5)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT2 <-- MBR\n       (SelA=1011, MB=01, SelCop=1010, MC=1, T6, C1) \t\t# MBR <-- RT2 + RR3\n       (Ta, Td, W, BW=00)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# MP[MAR] <-- MBR\n       \n       # RT1 <-- i + 1\n\t\t\t (MA=1, MB=11, SelCop=1010, MC=1, T6, C4)\t\t# RT1 <-- RT1 (i) + 1\n       (A0=0, B=1, C=0, MADDR=loop2)\t\t\t\t\t\t\t# salto a loop2\n       \n  fin2:(SelA=10101, SelB=10000, SelCop=1010, MC=1, T6, SelC=10000, LC=1) \t\t# RR2 <-- RR1 + RR2\n       (SelA=0, MR=1, T9, C4) \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT1 <-- 0\n       (T4, SelC=10101, LC=1)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RR1 <-- RT1\n       (T7, C7, A0=1, B=1, C=0)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# SR <-- RT3, salto a fetch\n   }\n}\n\n\n\n\n\n\n\n\n\n",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "firmware",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## assembly",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "\n\n\n\n\n\n\n\n\n\n",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "assembly",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## state_current",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "{\n  \"time\": 1732837741500,\n  \"title\": \"clock 1 @ &#181;address 0\",\n  \"title_short\": \"clock 1,<br>&#181;add 0\",\n  \"content\": \"\"\n}",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "state_current",
+        "type": "object",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## state_history",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "[]",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "state_history",
+        "type": "object",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## record",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "[]",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "record",
+        "type": "object",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## tag",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "29/11/2024, 0:48:57",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "tag",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## notify",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "true",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "notify",
+        "type": "boolean",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## wepsim_runner",
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import _message\n",
+        "nb = _message.blocking_request('get_ipynb')\n",
+        "\n",
+        "type = ''\n",
+        "ws = {'firmware': '', 'assembly': ''}\n",
+        "for cell in nb['ipynb']['cells']:\n",
+        "  if '## firmware' in cell['source']:\n",
+        "     type = 'firmware'\n",
+        "     continue\n",
+        "  if '## assembly' in cell['source']:\n",
+        "     type = 'assembly'\n",
+        "     continue\n",
+        "  if type == 'firmware':\n",
+        "     ws['firmware'] = ' '.join(cell['source']) ;\n",
+        "     type = ''\n",
+        "     continue\n",
+        "  if type == 'assembly':\n",
+        "     ws['assembly'] = ' '.join(cell['source']) ;\n",
+        "     type = ''\n",
+        "     continue\n",
+        "\n",
+        "if ws['assembly'] != '' and ws['firmware'] != '':\n",
+        "   with open('/base.mc', 'w') as f:\n",
+        "       f.write(ws['firmware'])\n",
+        "   with open('/base.asm', 'w') as f:\n",
+        "       f.write(ws['assembly'])\n",
+        "\n",
+        "if ws['assembly'] != '' and ws['firmware'] != '':\n",
+        "   !npm install  terser jq jshint yargs clear inquirer >& /dev/null\n",
+        "   !wget https://github.com/acaldero/wepsim/releases/download/v2.3.3/wepsim-2.3.3.zip >& /dev/null\n",
+        "   !unzip -o wepsim-2.3.3.zip  >& /dev/null\n",
+        "   !rm -fr   wepsim-2.3.3.zip\n",
+        "   !./wepsim-2.3.3/wepsim.sh -a stepbystep -m ep -f /base.mc -s /base.asm > ./result.csv\n",
+        "\n",
+        "df = None\n",
+        "if ws['assembly'] != '' and ws['firmware'] != '':\n",
+        "   import pandas as pd\n",
+        "   import io\n",
+        "   df1 = pd.read_csv('./result.csv')\n",
+        "   df1.columns = df1.columns.str.strip()\n",
+        "   for item in df1.columns[:]:\n",
+        "       df1[item].replace(\"\\t\",\"\",     inplace=True, regex=True)\n",
+        "       df1[item].replace(\"&nbsp;\",\"\", inplace=True, regex=True)\n",
+        "\n",
+        "%load_ext google.colab.data_table\n",
+        "df1\n"
+      ],
+      "metadata": {
+        "name": "wepsim",
+        "type": "code",
+        "collapsed": true,
+        "deletable": false,
+        "editable": true
+      }
+    }
+  ]
+}

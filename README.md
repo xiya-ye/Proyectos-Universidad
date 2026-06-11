@@ -10,3 +10,6 @@ Los proyectos están organizados por carpetas según la asignatura. Dentro de ca
 
 ### Programación (1º)
 Recreación jugable del mítico Mario Bros. Todo el código está organizado usando Programación Orientada a Objetos en Python para poder controlar a Mario, a los enemigos y las monedas de forma independiente. Me encargué de programar toda la lógica detrás del juego, incluyendo un pequeño motor de físicas propio para que los saltos, las caídas y las colisiones funcionaran en tiempo real.
+
+### Estructura de Computadores (2º)
+En la primera práctica programamos en ensamblador (RISC-V) un calculadora de integrales definidas para funciones cuadráticas, usando el simulador CREATOR desarrollada por la universidad. En la segunda práctica, diseñamos e implementamos desde cero nuevas instrucciones para extender la arquitectura RISC-V. Creamos comandos nuevos para poder trabajar con vectores y pintar directamente en una pantalla para simular un semáforo, usando el simulador WepSIM.

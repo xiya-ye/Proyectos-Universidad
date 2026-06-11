@@ -1,0 +1,265 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "node_nteract",
+      "language": "javascript",
+      "display_name": "Node.js (nteract)"
+    },
+    "kernel_info": {
+      "name": "node_nteract"
+    },
+    "language_info": {
+      "name": "javascript",
+      "version": "8.2.1",
+      "mimetype": "application/javascript",
+      "file_extension": ".js"
+    },
+    "title": "WepSIM ",
+    "nteract": {
+      "version": "nteract-on-jupyter@2.0.0"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": "## mode",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "ep",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "mode",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## firmware",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "begin\n{\n         # ensure R0 is zero\n         (EXCODE=0, T11, MR=1, SelC=0, LC=1),\n\n  fetch: \n         (T2, C0)\t\t\t\t\t\t\t\t\t\t\t\t# MAR <- PC\n         (TA, R, BW=11, M1=1, C1=1)\t\t\t# MBR <- MP[MAR]\n         (M2, C2, T1, C3)\t\t\t\t\t\t\t\t# IR  <- MBR, PC <- PC + 4\n         (A0, B=0, C=0)\n}\n\n\nlx RR1 U32 {\n   co=100110,\n   nwords=2,\n   RR1=reg(25,21),\n   U32=inm(63,32),\n   {\n\t\t\t\t(T2, C0)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# MAR <-- PC\n\t\t\t\t(Ta, R, BW=11, M1=1, C1, M2=1, C2)\t\t\t\t\t\t# MBR <-- MP[MAR], PC <-- PC + 4\n\t\t\t\t(T1, SelC=10101, MR=0, LC, A0=1, B=1, C=0)\t\t# BR[R1] <-- MBR, salto a fetch\n   }\n}\n\ncall U32 {\n   co=100001,\n   nwords=2,\n   U32=inm(63,32)\n   {\n      \t# RT1 <-- U32\n        (T2, C0)\t\t\t\t\t\t\t\t\t# MAR <-- PC\n        (Ta, R, BW=11, M1, C1)\t\t# MBR <-- MP[MAR]\n        (T1, C4, M2=1, C2) \t\t\t\t# RT1 <-- MBR, PC <-- PC + 4\n     \n       # SP <-- SP - 4\n       (SelA=10,MR=1, MA=0, MB=10, SelCop=01011, MC, T6, SelC=10, LC) \t# SP <-- SP-4\n\n       # MP[SP] <-- PC \n       (T2, M1=0, C1)\t\t\t\t\t\t\t# MBR <-- PC\n       (SelA=10, MR=1, T9, C0)\t\t# MAR <-- SP\n       (W, Ta, Td, BW=11) \t\t\t\t# MP[MAR] <-- MBR\n\n       # PC <-- RT1\n       (T4, M2=0, C2, A0=1, B=1, C=0)\t\t\t# PC <-- RT1, salto a fetch\n   }\n\n}\n\n\nreturn {\n   co=100010,\n   nwords=1,\n   {\n       # PC <-- MP[SP]\n       (SelA=10, MR=1, T9, C0)\t\t\t# MAR <-- SP\n       (Ta, R, BW=11, M1=1, C1)\t\t\t# MBR <-- MP[MAR]\n       (T1, M2=0, C2)\t\t\t\t\t\t\t\t# PC <-- MBR\n       \n       # SP ← SP + 4\n       (SelA=10,MR=1, MA=0, MB=10, SelCop=1010, MC, T6, SelC=10, LC, A0=1, B=1, C=0)\t\t# SP <-- SP + 4, salto a fetch\n   }\n}\n\n\nstop {\n   co=100011,\n   nwords=1,\n   {\n       # SP <-- 0x00\n       (SelA=0, MR=1, T9, SelC=10, LC)\t\t\t\t\t\t\t\t\t\t# SP <-- R0\n  \n     \t # PC <-- 0x00 (R0)\n       (SelA=0, MR=1, T9, M2=0, C2, A0=1, B=1, C=0)\t\t\t\t# PC <-- R0, salto a fetch\n   }\n}\n\n\n\nvfill RR1 (RR2) U8 {\n   co=100100,\n   nwords=1,\n   RR1=reg(25,21)\n   RR2=reg(20,16)\n   U8=inm(7,0)\n   {\n       (T8, C5)\t\t\t\t\t\t\t\t\t\t# RT2 <-- SR\n     \t (SelA=0, MR=1, T9, C4)\t\t\t# RT1 (i) <-- 0\n\n loop1:(SelB=10101, MA=1, SelCop=1011, MC=1, SelP=11, M7=1, C7)\t\t\t\t# SR <-- RR1 - RT1\n       (A0=0, B=0, C=110, MADDR=fin1)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# beq SR 0 fin (=)\n                                                                                              \n       # addr ← BR[RR2] + i\n  \t\t (SelB=10000, MA=1, SelCop=1010, MC=1, T6, C0)\t\t# MAR <-- RR2 + RT1\n  \n  \t\t # MP[addr] ← U8\n       (SE=1, SIZE=1000, T3, C1)\t\t# MBR <-- U8\n\t\t\t (Ta, Td, W, BW=00) \t\t\t\t\t# MAR[addr] <-- MBR\n       \n     \t # RT1 <-- RT1 + 1\n\t\t\t (MA=1, MB=11, SelCop=1010, MC=1, T6, C4)\t\t\t# RT1 <-- RT1 (i) + 1\n       (A0=0, B=1, C=0, MADDR=loop1)\t\t\t\t\t\t\t\t# salto a loop2\n       \n  fin1:\n       (SelA=10101, SelB=10000, SelCop=1010, MC=1, T6, SelC=10000, LC=1) \t\t# RR2 <-- RR1 + RR2\n       (SelA=0, MR=1, T9, C4) \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT3 <-- R0\n       (T4, SelC=10101, LC=1)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RR1 <-- RT1\n       (T5, C7, A0=1, B=1, C=0)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# SR <-- RT2, salto a fetch\n   }\n}\n\n  \n  \nvadd RR1 (RR2) RR3 {\n   co=100101\n   nwords=1\n   RR1=reg(25,21)\n   RR2=reg(20,16)\n   RR3=reg(15,11)\n\n   {\n       (T8, SelC=110, MR=1, LC=1, MA=1, MB=11, SelCop=1100, MC=1, C6)\t\t# RT1 <-- SR, RT3 <-- RT1\n     \t (SelA=0, MR=1, T9, C4)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT1 (i) <-- 0\n\n loop2:(SelB=10101, MA=1, SelCop=1011, MC=1, SelP=11, M7=1, C7)\t\t\t# SR <-- RR1 - RT1\n       (A0=0, B=0, C=110, MADDR=fin2)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# beq SR 0 fin (=)\n                                                                                              \n       # addr ← BR[RR2] + i\n  \t\t (SelB=10000, MA=1, SelCop=1010, MC=1, T6, C0)\t\t# MAR <-- RR2 + RT1\n  \n  \t\t # MEM[addr] ← MEM[addr] + RR3\n       (Ta, R, BW=00, M1=1, C1)\t\t\t\t\t\t\t\t\t\t\t\t\t# MBR <-- MP[addr]\n       (T1, C5)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT2 <-- MBR\n       (SelA=1011, MB=01, SelCop=1010, MC=1, T6, C1) \t\t# MBR <-- RT2 + RR3\n       (Ta, Td, W, BW=00)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# MP[MAR] <-- MBR\n       \n       # RT1 <-- i + 1\n\t\t\t (MA=1, MB=11, SelCop=1010, MC=1, T6, C4)\t\t# RT1 <-- RT1 (i) + 1\n       (A0=0, B=1, C=0, MADDR=loop2)\t\t\t\t\t\t\t# salto a loop2\n       \n  fin2:(SelA=10101, SelB=10000, SelCop=1010, MC=1, T6, SelC=10000, LC=1) \t\t# RR2 <-- RR1 + RR2\n       (SelA=0, MR=1, T9, C4) \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RT1 <-- 0\n       (T4, SelC=10101, LC=1)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# RR1 <-- RT1\n       (T7, C7, A0=1, B=1, C=0)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t# SR <-- RT3, salto a fetch\n   }\n}\n  \n  \n# -------------------------------------------------------------- MATERIAL DE APOYO ------------------------------------------------------------------------------\n#\n# RISC-V instructions that can be used / Instrucciones RISC-V que pueden usarse\n#\n\nli reg val {\n     co=111111,\n     nwords=1,\n     reg=reg(25,21),\n     val=imm(20,0),\n     help='r1 = SignExt(val)',\n     {\n          (SE=1, OFFSET=0, SIZE=10100, T3=1, LC=1, MR=0, SELC=10101, A0=1, B=1, C=0)\n     }\n}\n\nrdcycle reg1  {\n      co=111111,\n      nwords=1,\n      reg1=reg(25,21),\n      help='reg1 = load accumulated clock cycles',\n      {\n           (MH=1, T12=1, SELC=10101, LC=1, A0=1, B=1, C=0)\n      }\n}\n\nin reg val {\n     co=111111,\n     nwords=1,\n     reg=reg(25,21),\n     val=imm(15,0),\n     help='reg = device_registers[val]',\n     {\n         (SE=0, OFFSET=0, SIZE=10000, T3=1, C0=1),\n         (TA=1, IOR=1, BW=11, M1=1, C1=1),\n         (T1=1, LC=1,  MR=0, SELC=10101, A0=1, B=1, C=0)\n     }\n}\n\nout reg val {\n     co=111111,\n     nwords=1,\n     reg=reg(25,21),\n     val=imm(15,0),\n     help='device_register[val] = reg',\n     {\n         (SE=0, OFFSET=0,   SIZE=10000,   T3=1, C0=1),\n         (MR=0, SELA=10101, T9=1,         M1=0, C1=1),\n         (TA=1, TD=1,       IOW=1, BW=11, A0=1, B=1, C=0)\n     }\n}\n\nadd reg1 reg2 reg3 {\n      co=111111,\n      nwords=1,\n      reg1=reg(25,21),\n      reg2=reg(20,16),\n      reg3=reg(15,11),\n      help='r1 = r2 + r3',\n      {\n          (MC=1, MR=0, SELA=1011, SELB=10000, MA=0, MB=0, SELCOP=1010, T6=1, SELC=10101, LC=1, SELP=11, M7, C7, A0=1, B=1, C=0)\n      }\n}\n\naddi reg1 reg2 val {\n         co=111111,\n         nwords=1,\n         reg1 = reg(25,21),\n         reg2 = reg(20,16),\n         val  = imm(15,0),\n         help ='r1 = r2 + val',\n         {\n             (SE=1, OFFSET=0, SIZE=10000, T3=1, C4=1),\n             (MC=1, MR=0, SELB=10000, MA=1, MB=0, SELCOP=1010, T6=1, SELC=10101, LC=1, SELP=11, M7, C7, A0=1, B=1, C=0)\n         }\n}\n\nsub reg1 reg2 reg3 {\n      co=111111,\n      nwords=1,\n      reg1=reg(25,21),\n      reg2=reg(20,16),\n      reg3=reg(15,11),\n      help='r1 = r2 - r3',\n      {\n          (MC=1, MR=0, SELB=1011, SELA=10000, MA=0, MB=0, SELCOP=1011, T6=1, SELC=10101, LC=1, SELP=11, M7, C7, A0=1, B=1, C=0)\n      }\n}\n\nmul reg1 reg2 reg3 {\n      co=111111,\n      nwords=1,\n      reg1=reg(25,21),\n      reg2=reg(20,16),\n      reg3=reg(15,11),\n      help='reg1 = reg2 * reg3',\n      {\n          (MC=1, MR=0, SELA=1011, SELB=10000, MA=0, MB=0, SELCOP=1100, T6=1, SELC=10101, LC=1, SELP=11, M7, C7, A0=1, B=1, C=0)\n      }\n}\n\nand reg1 reg2 reg3 {\n     co=111111,\n     nwords=1,\n     reg1=reg(25,21),\n     reg2=reg(20,16),\n     reg3=reg(15,11),\n     help='r1 = r2 & r3',\n     {\n          (MC=1, MR=0, SELA=1011, SELB=10000, MA=0, MB=0, SELCOP=1, T6=1, SELC=10101, LC=1, SELP=11, M7, C7, A0=1, B=1, C=0)\n     }\n}\n\nlb reg1 (reg2) {\n     co=111111,\n     nwords=1,\n     reg1 = reg(25,21),\n     reg2 = reg(20,16),\n     help='r1 = MEM[r2]/8',\n     {\n          (MR=0, SELA=10000, T9=1, C0),\n          (TA=1, R=1, BW=00, SE=1, M1=1, C1=1),\n          (T1=1, LC=1, MR=0, SELC=10101, SE=1, A0=1, B=1, C=0)\n     }\n}\n\nsb reg1 (reg2) {\n         co=111111,\n         nwords=1,\n         reg1 = reg(25,21),\n         reg2 = reg(20,16),\n         {\n             (MR=0,  SELA=10000, T9=1, C0=1),\n             (MR=0,  SELA=10101, T9=1, M1=0, C1=1),\n             (BW=0,  TA=1, TD=1, W=1,  A0=1, B=1, C=0)\n         }\n}\n\nlw rd offset(rs1) {\n      co=010010,\n      nwords=1,\n      rd=reg(25,21),\n      offset=imm(15,0),\n      rs1=reg(20,16),\n      help='rd = (MEM[rs1+offset+3] .. MEM[rs1+offset])',\n      {\n          (SE=1, OFFSET=0, SIZE=10000, T3=1, C5=1),\n          (MR=0, SELA=10000, MA=0, MB=1, MC=1, SELCOP=1010, T6=1, C0=1),\n          (TA=1, R=1, BW=11, M1=1, C1=1),\n          (T1=1, LC=1, MR=0, SELC=10101, A0=1, B=1, C=0)\n      }\n}\n\nsw reg1 val(reg2) {\n      co=010111,\n      nwords=1,\n      reg1 = reg(25,21),\n      val  = imm(15,0),\n      reg2 = reg(20,16),\n      help='MEM[rs1+offset+3 .. rs1+offset] = rs2',\n      {\n          (SE=1, OFFSET=0, SIZE=10000, T3=1, C5=1),\n          (MR=0, SELA=10000, MA=0, MB=1, MC=1, SELCOP=1010, T6=1, C0=1),\n          (MR=0,  SELA=10101, T9=1, M1=0, C1=1),\n          (BW=11, TA=1, TD=1, W=1,  A0=1, B=1, C=0)\n      }\n}\n\nbeq reg reg offset {\n     co=111111,\n     nwords=1,\n     reg=reg(25,21),\n     reg=reg(20,16),\n     offset=address(15,0)rel,\n     help='if ($r1 == $r2) pc += 4*offset',\n     {\n             (T8, C5),\n             (SELA=10101, SELB=10000, MC=1, SELCOP=1011, SELP=11, M7, C7),\n             (A0=0, B=1, C=110, MADDR=bck2ftch),\n             (T5, M7=0, C7),\n             (T2, C5),\n             (SE=1, OFFSET=0, SIZE=10000, T3, C4),\n             (MA=1, MB=10, MC=1, SELCOP=1100, T6, C4),\n             (MA=1, MB=1, MC=1, SELCOP=1010, T6, C2, A0=1, B=1, C=0),\n   bck2ftch: (T5, M7=0, C7),\n             (A0=1, B=1, C=0)\n     }\n}\n\n\n#\n# Extension: new instructions\n#\n\n# lx reg1 u32            { ... }\n# call u32               { ... }\n# return                 { ... }\n# stop                   { ... }\n# vfill reg1 (reg2) val1 { ... }\n# vadd  reg1 (reg2) reg3 { ... }\n\n\n#\n# Registers\n#\n\n# registers { ... }\n  \n  \n# ---------------------------------------------------------------- MATERIAL DE APOYO ----------------------------------------------------------------------------\n\n\nregisters\n{\n    0=(zero,  x0),\n    1=(ra,    x1),\n    2=(sp,    x2) (stack_pointer),\n    3=(gp,    x3),\n    4=(tp,    x4),\n    5=(t0,    x5),\n    6=(t1,    x6),\n    7=(t2,    x7),\n    8=(s0,fp, x8),\n    9=(s1,    x9),\n    10=(a0,  x10),\n    11=(a1,  x11),\n    12=(a2,  x12),\n    13=(a3,  x13),\n    14=(a4,  x14),\n    15=(a5,  x15),\n    16=(a6,  x16),\n    17=(a7,  x17),\n    18=(s2,  x18),\n    19=(s3,  x19),\n    20=(s4,  x20),\n    21=(s5,  x21),\n    22=(s6,  x22),\n    23=(s7,  x23),\n    24=(s8,  x24),\n    25=(s9,  x25),\n    26=(s10, x26),\n    27=(s11, x27),\n    28=(t3,  x28),\n    29=(t4,  x29),\n    30=(t5,  x30),\n    31=(t6,  x31)\n}\n",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "firmware",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## assembly",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "# Ciclos de reloj sin extension: 53987\n# Ciclos de reloj con extensión: 10457\n# Por lo que, con extension tiene 43530 ciclos menos, habiendo una mejora del 80,63%\n\n.data\n   mu: .byte  0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,\n               0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0\n\n.text\nshow_and_delay:\n         # show led matrix\n           li   a0, mu\n           out  a0, 0x3108\n           li   a0, 0x20\n           out  a0, 0x3104\n\n         # wait \"some time\" (looping 20 times)\n           li   t0, 0\n           li   t1, 20\n    bc_10: beq  t0, t1, ec_10\n           addi t0, t0, 1\n           beq  x0, x0, bc_10\n    ec_10: return\n\n \n### (1/2) RISC-V (WITHOUT new extension) ###\n\nvfill_asm: \n           # + arguments:\n           #   a0: matrix, a1: neltos, a2: value\n           # + algorithm:\n           #   for (e=0; e<a1; e++):\n           #        matrix[e] <- a2\n\n           li t0 0 \t\t\t\t# t0=e, inicializamos a 0\n    loop1: beq t0 a1 fin1\n           add t2 t0 a0\t\t# calculo de la direccion de matriz[e]: e + a0\n           sb a2 (t2)\t\t\t# guardar a2 en la matriz\n           addi t0 t0 1\t\t# iterar e\n\n           beq t0 t0 loop1\n           \t\n      fin1:return\n\nvadd_asm: \n           # + arguments:\n           #   a0: matrix, a1: neltos, a2: value\n           # + algorithm:\n           #   for (e=0; e<a1; e++):\n           #        p <- matrix[e]\n           #        p <- p + value\n           #        matrix[e] <- p\n\n\t\t\t\t\t li t0 0 \t# t0=e\n    loop2: beq t0 a1 fin2\n           add t2 t0 a0 \t# calculo de la direccion de matriz[e]: e + a0\n           lb t3 (t2)\t\t\t# t3 <-- matriz[e]\n           add t4 t3 a2\t\t# t4 <-- matriz[e] + a2\n           sb t4 (t2)\t\t\t# matriz[e] <-- matriz[e] + a2\n           addi t0 t0 1\t\t# iterar e\n           beq t0 t0 loop2\n\n      fin2:return\n\nwithout_ext: # a0:mu, a1:neltos, a2:color\n           addi sp, sp, -8\n           sw a0, 0(sp)\n           sw a1, 4(sp)\n         \n           # vadd(mu, 8*24, color)\n           call vadd_asm\n\n           # show screen + wait\n           call show_and_delay\n\n           # fill(mu+0, 8*24, black)\n           lw  a0, 0(sp)\n           lw  a1, 4(sp)\n           li  a2, 0x00\n           call vfill_asm\n           \n           addi sp, sp, 8\n           return\n\n### (2/2) RISC-V (WITH new extension) ###\n\nwith_ext: # a0:mu, a1:neltos, a2:color\n           addi sp, sp, -8\n           sw a0 0(sp)\n           sw a1 4(sp)\n\n           # vadd(mu, 8*24, color)\n           vadd a1 (a0) a2\n\n           # show screen + wait\n           call show_and_delay\n\n           # vfill(mu, 8*24, black)\n           lw a0, 0(sp)\n           lw a1, 4(sp)\n           vfill a1 (a0) 0x00\n           \n           addi sp, sp, 8\n           return\n \nmain: \n         ##### WITH extension #####\n         rdcycle s0\n\n         # verde: mu, 8*24, 0x0a\n           li a0, mu\n           li a1, 168\n           li a2, 0x0a\n           call with_ext\n\n         # amarillo: mu+192, 8*24, 0x08\n           li   a0, mu\n           addi a0, a0, 192\n           li   a1, 168\n           li   a2, 0x08\n           call with_ext\n\n         # rojo: mu+384, 8*24, 0x03\n           li   a0, mu\n           addi a0, a0, 384\n           li   a1, 168\n           li   a2, 0x03\n           call with_ext\n\n         rdcycle s2\n         sub s2, s2, s0\n\n         ##### WITHOUT new extension ##### \n         rdcycle s0\n\n         # verde: mu, 8*24, 0x0a\n           li a0 mu\n           li a1 168\n           li a2 0x0a\n           call without_ext\n\n         # amarillo: mu+192, 8*24, 0x08\n           li   a0, mu\n           addi a0, a0, 192\n           li   a1, 168\n           li   a2, 0x08\n           call without_ext\n\n         # rojo: mu+384, 8*24, 0x03\n           li a0, mu\n           addi a0, a0, 384\n           li a1, 168\n           li a2, 0x03\n           call without_ext\n\n         rdcycle s1\n         sub s1, s1, s0\n\n         # the end\n         stop\n\n",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "assembly",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## state_current",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "{\n  \"time\": 1732837682178,\n  \"title\": \"clock 64476 @ &#181;address 0\",\n  \"title_short\": \"clock 64476,<br>&#181;add 0\",\n  \"content\": \"register R5 = 0xa8; register R6 = 0x14; register R7 = 0x1227; register R8 = 0x28ea; register R9 = 0xd2e3; register R10 = 0x1180; register R11 = 0xa8; register R18 = 0x28d9; register R29 = 0x3; register SR = 0xffffff8; memory 0x8000 = 0x1401000; memory 0x8004 = 0xd403108; memory 0x8008 = 0x1400020; memory 0x800c = 0xd403104; memory 0x8010 = 0xa00000; memory 0x8014 = 0xc00014; memory 0x8018 = 0x2ca60002; memory 0x801c = 0x14a50001; memory 0x8020 = 0x2c00fffd; memory 0x8024 = 0x88000000; memory 0x8028 = 0xa00000; memory 0x802c = 0x2cab0004; memory 0x8030 = 0x10e55000; memory 0x8034 = 0x29870000; memory 0x8038 = 0x14a50001; memory 0x803c = 0x2ca5fffb; memory 0x8040 = 0x88000000; memory 0x8044 = 0xa00000; memory 0x8048 = 0x2cab0006; memory 0x804c = 0x10e55000; memory 0x8050 = 0x27870000; memory 0x8054 = 0x13bc6000; memory 0x8058 = 0x2ba70000; memory 0x805c = 0x14a50001; memory 0x8060 = 0x2ca5fff9; memory 0x8064 = 0x88000000; memory 0x8068 = 0x1442fff8; memory 0x806c = 0x5d420000; memory 0x8070 = 0x5d620004; memory 0x8074 = 0x84000000; memory 0x8078 = 0x8044; memory 0x807c = 0x84000000; memory 0x8080 = 0x8000; memory 0x8084 = 0x49420000; memory 0x8088 = 0x49620004; memory 0x808c = 0x1800000; memory 0x8090 = 0x84000000; memory 0x8094 = 0x8028; memory 0x8098 = 0x14420008; memory 0x809c = 0x88000000; memory 0x80a0 = 0x1442fff8; memory 0x80a4 = 0x5d420000; memory 0x80a8 = 0x5d620004; memory 0x80ac = 0x956a6000; memory 0x80b0 = 0x84000000; memory 0x80b4 = 0x8000; memory 0x80b8 = 0x49420000; memory 0x80bc = 0x49620004; memory 0x80c0 = 0x916a0000; memory 0x80c4 = 0x14420008; memory 0x80c8 = 0x88000000; memory 0x80cc = 0x5000000; memory 0x80d0 = 0x1401000; memory 0x80d4 = 0x16000a8; memory 0x80d8 = 0x180000a; memory 0x80dc = 0x84000000; memory 0x80e0 = 0x80a0; memory 0x80e4 = 0x1401000; memory 0x80e8 = 0x154a00c0; memory 0x80ec = 0x16000a8; memory 0x80f0 = 0x1800008; memory 0x80f4 = 0x84000000; memory 0x80f8 = 0x80a0; memory 0x80fc = 0x1401000; memory 0x8100 = 0x154a0180; memory 0x8104 = 0x16000a8; memory 0x8108 = 0x1800003; memory 0x810c = 0x84000000; memory 0x8110 = 0x80a0; memory 0x8114 = 0x6400000; memory 0x8118 = 0x1a524000; memory 0x811c = 0x5000000; memory 0x8120 = 0x1401000; memory 0x8124 = 0x16000a8; memory 0x8128 = 0x180000a; memory 0x812c = 0x84000000; memory 0x8130 = 0x8068; memory 0x8134 = 0x1401000; memory 0x8138 = 0x154a00c0; memory 0x813c = 0x16000a8; memory 0x8140 = 0x1800008; memory 0x8144 = 0x84000000; memory 0x8148 = 0x8068; memory 0x814c = 0x1401000; memory 0x8150 = 0x154a0180; memory 0x8154 = 0x16000a8; memory 0x8158 = 0x1800003; memory 0x815c = 0x84000000; memory 0x8160 = 0x8068; memory 0x8164 = 0x5200000; memory 0x8168 = 0x19294000; memory 0x816c = 0x8c000000; memory 0xffff0 = 0x8098; memory 0xffff4 = 0x1180; memory 0xffff8 = 0xa8; memory 0xffffc = 0x8164; \"\n}",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "state_current",
+        "type": "object",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## state_history",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "[]",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "state_history",
+        "type": "object",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## record",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "[]",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "record",
+        "type": "object",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## tag",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "29/11/2024, 0:47:53",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "tag",
+        "type": "string",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## notify",
+      "metadata": {
+        "collapsed": false,
+        "deletable": false,
+        "editable": false
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": "true",
+      "outputs": [],
+      "execution_count": 1,
+      "metadata": {
+        "name": "notify",
+        "type": "boolean",
+        "collapsed": false,
+        "deletable": false,
+        "editable": true
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": "## wepsim_runner",
+      "metadata": {}
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import _message\n",
+        "nb = _message.blocking_request('get_ipynb')\n",
+        "\n",
+        "type = ''\n",
+        "ws = {'firmware': '', 'assembly': ''}\n",
+        "for cell in nb['ipynb']['cells']:\n",
+        "  if '## firmware' in cell['source']:\n",
+        "     type = 'firmware'\n",
+        "     continue\n",
+        "  if '## assembly' in cell['source']:\n",
+        "     type = 'assembly'\n",
+        "     continue\n",
+        "  if type == 'firmware':\n",
+        "     ws['firmware'] = ' '.join(cell['source']) ;\n",
+        "     type = ''\n",
+        "     continue\n",
+        "  if type == 'assembly':\n",
+        "     ws['assembly'] = ' '.join(cell['source']) ;\n",
+        "     type = ''\n",
+        "     continue\n",
+        "\n",
+        "if ws['assembly'] != '' and ws['firmware'] != '':\n",
+        "   with open('/base.mc', 'w') as f:\n",
+        "       f.write(ws['firmware'])\n",
+        "   with open('/base.asm', 'w') as f:\n",
+        "       f.write(ws['assembly'])\n",
+        "\n",
+        "if ws['assembly'] != '' and ws['firmware'] != '':\n",
+        "   !npm install  terser jq jshint yargs clear inquirer >& /dev/null\n",
+        "   !wget https://github.com/acaldero/wepsim/releases/download/v2.3.3/wepsim-2.3.3.zip >& /dev/null\n",
+        "   !unzip -o wepsim-2.3.3.zip  >& /dev/null\n",
+        "   !rm -fr   wepsim-2.3.3.zip\n",
+        "   !./wepsim-2.3.3/wepsim.sh -a stepbystep -m ep -f /base.mc -s /base.asm > ./result.csv\n",
+        "\n",
+        "df = None\n",
+        "if ws['assembly'] != '' and ws['firmware'] != '':\n",
+        "   import pandas as pd\n",
+        "   import io\n",
+        "   df1 = pd.read_csv('./result.csv')\n",
+        "   df1.columns = df1.columns.str.strip()\n",
+        "   for item in df1.columns[:]:\n",
+        "       df1[item].replace(\"\\t\",\"\",     inplace=True, regex=True)\n",
+        "       df1[item].replace(\"&nbsp;\",\"\", inplace=True, regex=True)\n",
+        "\n",
+        "%load_ext google.colab.data_table\n",
+        "df1\n"
+      ],
+      "metadata": {
+        "name": "wepsim",
+        "type": "code",
+        "collapsed": true,
+        "deletable": false,
+        "editable": true
+      }
+    }
+  ]
+}
