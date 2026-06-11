@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mochileros Sin Fronteras - Iniciar sesión</title>
+
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/login.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <section class="auth-section container">
+            <div class="auth-header">
+                <div class="breadcrumb">
+                    <span data-i18n="breadcrumb_home">Inicio</span> &gt;
+                    <span data-i18n="nav_account">Mi cuenta</span> &gt;
+                    <span class="breadcrumb-current" data-i18n="breadcrumb_login">Iniciar sesión</span>
+                </div>
+                <h1 class="auth-title" data-i18n="login_title">Inicia sesión en Mochileros Sin Fronteras</h1>
+                <p class="auth-subtitle" data-i18n="login_subtitle">
+                    Accede a tus reservas, tus favoritos y tu actividad en el foro desde tu cuenta.
+                </p>
+            </div>
+
+            <div class="auth-layout">
+                <!-- Columna izquierda: formulario -->
+                <section class="auth-form-card">
+                    <h2 class="auth-card-title" data-i18n="login_form_title">Iniciar sesión</h2>
+                    <p class="auth-card-subtitle" data-i18n="login_form_subtitle">
+                        Introduce tu correo electrónico y tu contraseña.
+                    </p>
+
+                    <!-- Simulación de login: al enviar, navega al panel de cuenta -->
+                    <form class="auth-form" action="account-dashboard.html" method="get">
+                        <div class="form-group">
+                            <label for="email" data-i18n="login_email_label">Correo electrónico</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required 
+                                data-i18n-placeholder="login_email_placeholder"
+                                placeholder="tucorreo@ejemplo.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" data-i18n="login_password_label">Contraseña</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                required 
+                                data-i18n-placeholder="login_password_placeholder"
+                                placeholder="••••••••">
+                        </div>
+
+                        <div class="form-row form-row-between">
+                            <label class="checkbox-row">
+                                <input type="checkbox" name="remember">
+                                <span data-i18n="login_remember_me">Recordar sesión en este dispositivo</span>
+                            </label>
+                            <a href="#" class="link-small" data-i18n="login_forgot_password">
+                                ¿Has olvidado tu contraseña?
+                            </a>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary" data-i18n="login_submit">
+                                Entrar
+                            </button>
+                        </div>
+
+                        <div class="divider">
+                            <span data-i18n="login_or">o</span>
+                        </div>
+
+                        <div class="register-cta">
+                            <p data-i18n="login_no_account">¿Todavía no tienes cuenta?</p>
+                            <a href="register.html" class="link-inline" data-i18n="login_register_link">
+                                Crear una cuenta
+                            </a>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Columna derecha: beneficios e info -->
+                <aside class="auth-side-card">
+                    <h2 data-i18n="login_benefits_title">¿Qué puedes hacer con tu cuenta?</h2>
+                    <ul class="benefits-list">
+                        <li data-i18n="login_benefit_1">
+                            Guardar y consultar tus reservas de viajes y alojamientos.
+                        </li>
+                        <li data-i18n="login_benefit_2">
+                            Marcar alojamientos y guías como favoritos para verlos más tarde.
+                        </li>
+                        <li data-i18n="login_benefit_3">
+                            Seguir hilos del foro y recibir respuestas a tus mensajes.
+                        </li>
+                        <li data-i18n="login_benefit_4">
+                            Mantener tus preferencias de idioma y accesibilidad.
+                        </li>
+                    </ul>
+
+                    <div class="auth-security">
+                        <h3 data-i18n="login_privacy_title">Tu privacidad nos importa</h3>
+                        <p data-i18n="login_privacy_text">
+                            Solo utilizamos tus datos para gestionar tu cuenta, tus reservas y tu participación en la comunidad.
+                            Puedes cambiar tus preferencias de accesibilidad y privacidad en cualquier momento.
+                        </p>
+                        <a href="a11y-settings.html" class="link-inline" data-i18n="login_privacy_link">
+                            Ver ajustes de accesibilidad y privacidad
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

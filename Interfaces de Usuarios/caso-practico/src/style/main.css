@@ -1,0 +1,63 @@
+/* Definición de variables para consistencia y fácil cambio de diseño */
+:root {
+    --primary-color: #2E86AB; /* Azul tipo viaje/mar */
+    --secondary-color: #F24C00; /* Naranja para llamadas a la acción (botones) */
+    --text-color: #333333;
+    --bg-color: #FAFAFA;
+    --white: #FFFFFF;
+    --border-radius: 8px;
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Reset básico para asegurar que se ve igual en todos los navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Para que el footer se quede abajo siempre */
+}
+
+/* Contenedor principal para centrar contenido */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Imágenes responsive por defecto */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Estilos de botones reutilizables */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #d14000;
+}

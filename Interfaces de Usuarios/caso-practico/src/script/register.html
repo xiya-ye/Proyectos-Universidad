@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mochileros Sin Fronteras - Crear cuenta</title>
+
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/register.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-main">
+        <section class="auth-section container">
+            <div class="auth-header">
+                <div class="breadcrumb">
+                    <span data-i18n="breadcrumb_home">Inicio</span> &gt;
+                    <span data-i18n="nav_account">Mi cuenta</span> &gt;
+                    <span class="breadcrumb-current" data-i18n="breadcrumb_register">Crear cuenta</span>
+                </div>
+                <h1 class="auth-title" data-i18n="register_title">
+                    Crea tu cuenta en Mochileros Sin Fronteras
+                </h1>
+                <p class="auth-subtitle" data-i18n="register_subtitle">
+                    Con una cuenta podrás guardar reservas, favoritos y seguir tus hilos del foro de mochileros.
+                </p>
+            </div>
+
+            <div class="auth-layout">
+                <!-- Columna izquierda: formulario de registro -->
+                <section class="auth-form-card">
+                    <h2 class="auth-card-title" data-i18n="register_form_title">Crear cuenta</h2>
+                    <p class="auth-card-subtitle" data-i18n="register_form_subtitle">
+                        Rellena estos datos básicos. Solo te pediremos lo imprescindible.
+                    </p>
+
+                    <!-- Simulación de registro: al enviar, navega al panel de cuenta -->
+                    <form class="auth-form" action="account-dashboard.html" method="get">
+                        <div class="form-group">
+                            <label for="name" data-i18n="register_name_label">Nombre</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required 
+                                data-i18n-placeholder="register_name_placeholder"
+                                placeholder="Tu nombre o alias">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-i18n="register_email_label">Correo electrónico</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required 
+                                data-i18n-placeholder="register_email_placeholder"
+                                placeholder="tucorreo@ejemplo.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" data-i18n="register_password_label">Contraseña</label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                required 
+                                data-i18n-placeholder="register_password_placeholder"
+                                placeholder="••••••••">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password_confirm" data-i18n="register_password_confirm_label">
+                                Repetir contraseña
+                            </label>
+                            <input 
+                                type="password" 
+                                id="password_confirm" 
+                                name="password_confirm" 
+                                required 
+                                data-i18n-placeholder="register_password_confirm_placeholder"
+                                placeholder="••••••••">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="trip_style" data-i18n="register_trip_style_label">
+                                Tipo de viaje preferido (opcional)
+                            </label>
+                            <select id="trip_style" name="trip_style">
+                                <option value="" selected data-i18n="register_trip_style_placeholder">
+                                    Selecciona una opción...
+                                </option>
+                                <option value="adventure" data-i18n="opt_adventure">Aventura</option>
+                                <option value="cultural" data-i18n="opt_cultural">Cultural</option>
+                                <option value="lowcost" data-i18n="opt_lowcost">Low Cost</option>
+                                <option value="relax" data-i18n="opt_relax">Relax / Playa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-consent">
+                            <label class="checkbox-row">
+                                <input type="checkbox" name="terms" required>
+                                <span data-i18n="register_terms">
+                                    He leído y acepto las Condiciones de uso y la Política de privacidad.
+                                </span>
+                            </label>
+
+                            <label class="checkbox-row">
+                                <input type="checkbox" name="newsletter">
+                                <span data-i18n="register_newsletter">
+                                    Quiero recibir ideas de viaje, ofertas y novedades por correo (opcional).
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary" data-i18n="register_submit">
+                                Crear cuenta
+                            </button>
+
+                            <a href="home.html" class="btn-secondary" data-i18n="register_cancel">
+                                Cancelar y volver al inicio
+                            </a>
+                        </div>
+
+                        <div class="divider">
+                            <span data-i18n="register_or">o</span>
+                        </div>
+
+                        <div class="login-cta">
+                            <p data-i18n="register_has_account">¿Ya tienes cuenta?</p>
+                            <a href="login.html" class="link-inline" data-i18n="register_login_link">
+                                Iniciar sesión
+                            </a>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Columna derecha: beneficios y confianza -->
+                <aside class="auth-side-card">
+                    <h2 data-i18n="register_benefits_title">Ventajas de registrarte</h2>
+                    <ul class="benefits-list">
+                        <li data-i18n="register_benefit_1">
+                            Guarda y recupera tus reservas desde cualquier dispositivo.
+                        </li>
+                        <li data-i18n="register_benefit_2">
+                            Crea listas de alojamientos y guías favoritas.
+                        </li>
+                        <li data-i18n="register_benefit_3">
+                            Sigue hilos del foro y recibe avisos cuando alguien te responda.
+                        </li>
+                        <li data-i18n="register_benefit_4">
+                            Mantén tus preferencias de idioma y accesibilidad entre visitas.
+                        </li>
+                    </ul>
+
+                    <div class="auth-security">
+                        <h3 data-i18n="register_privacy_title">Control total sobre tus datos</h3>
+                        <p data-i18n="register_privacy_text">
+                            Puedes actualizar tus datos personales, borrar tu cuenta o ajustar tus preferencias 
+                            de privacidad en cualquier momento desde tu panel de usuario.
+                        </p>
+                        <a href="a11y-settings.html" class="link-inline" data-i18n="register_privacy_link">
+                            Ver ajustes de accesibilidad y privacidad
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/register.js"></script> si algún día añades lógica extra
+</body>
+</html>

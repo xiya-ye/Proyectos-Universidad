@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Billetes - Mochileros Sin Fronteras</title>
+        
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/buy-p1.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="buy-container">
+        
+        <div class="page-intro">
+            <h1 data-i18n="buy_main_title">COMPRA DE BILLETES</h1>
+            <p class="page-subtitle"
+               data-i18n="buy_step1_subtitle">
+               Paso 1 de 5 · Introduce los datos básicos del viaje.
+            </p>
+        </div>
+
+        <div class="stepper-wrapper">
+            <div class="step-item active">
+                <div class="step-circle">1</div>
+                <span class="step-label" data-i18n="buy_step1_label">Datos del viaje</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">2</div>
+                <span class="step-label" data-i18n="buy_step2_label">Acompañantes</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">3</div>
+                <span class="step-label" data-i18n="buy_step3_label">Mascota</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">4</div>
+                <span class="step-label" data-i18n="buy_step4_label">Intolerancias</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">5</div>
+                <span class="step-label" data-i18n="buy_step5_label">Resumen y pago</span>
+            </div>
+        </div>
+
+        <div class="buy-grid">
+            
+            <section class="form-card">
+                <h2 data-i18n="buy_step1_form_title">Datos del viaje</h2>
+                <p class="form-instruction"
+                   data-i18n="buy_step1_form_help">
+                   Indica origen, destino, fechas y personas para este billete.
+                </p>
+                
+                <form class="travel-form">
+                    <div class="form-row">
+                        <input type="text"
+                               id="input-origen"
+                               class="input-field"
+                               placeholder="Origen..."
+                               data-i18n-placeholder="buy_origin_placeholder">
+                        <input type="text"
+                               id="input-destino"
+                               class="input-field"
+                               placeholder="Destino..."
+                               data-i18n-placeholder="buy_destination_placeholder">
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="text"
+                               id="input-fecha-ida"
+                               class="input-field"
+                               placeholder="Fecha de ida..."
+                               data-i18n-placeholder="buy_date_depart_placeholder"
+                               onfocus="(this.type='date')"
+                               onblur="(this.type='text')">
+                        <input type="text"
+                               id="input-fecha-vuelta"
+                               class="input-field"
+                               placeholder="Fecha de vuelta..."
+                               data-i18n-placeholder="buy_date_return_placeholder"
+                               onfocus="(this.type='date')"
+                               onblur="(this.type='text')">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="select-wrapper">
+                            <select id="select-clase"
+                                    class="input-field select-field"
+                                    data-i18n-placeholder="buy_triptype_placeholder">
+                                <option value="" disabled selected data-i18n="buy_triptype_placeholder">
+                                    Tipo de viaje...
+                                </option>
+                                <option value="turista" data-i18n="buy_triptype_turista">
+                                    Turista (x1)
+                                </option>
+                                <option value="business" data-i18n="buy_triptype_business">
+                                    Business (x2)
+                                </option>
+                                <option value="primera" data-i18n="buy_triptype_primera">
+                                    Primera Clase (x4)
+                                </option>
+                            </select>
+                        </div>
+                        <div class="select-wrapper">
+                            <select id="select-personas"
+                                    class="input-field select-field"
+                                    data-i18n-placeholder="buy_people_placeholder">
+                                <option value="" disabled selected data-i18n="buy_people_placeholder">
+                                    Personas...
+                                </option>
+                                <option value="1" data-i18n="opt_1_person">
+                                    1 Persona
+                                </option>
+                                <option value="2" data-i18n="opt_2_people">
+                                    2 Personas / Pareja
+                                </option>
+                                <option value="3" data-i18n="opt_3_people">
+                                    3 Personas
+                                </option>
+                                <option value="4" data-i18n="opt_4_people">
+                                    4 Personas
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+            </section>
+
+            <aside class="summary-card">
+                <h3 data-i18n="buy_summary_provisional_title">Resumen provisional</h3>
+                <ul class="summary-list">
+                    <li>
+                        <span data-i18n="buy_summary_origin">Origen:</span>
+                        <strong>—</strong>
+                    </li>
+                    <li>
+                        <span data-i18n="buy_summary_destination">Destino:</span>
+                        <strong>—</strong>
+                    </li>
+                    <li>
+                        <span data-i18n="buy_summary_dates">Fechas:</span>
+                        <strong>—</strong>
+                    </li>
+                    <li>
+                        <span data-i18n="buy_summary_people">Personas:</span>
+                        <strong>—</strong>
+                    </li>
+                </ul>
+                
+                <div class="total-row">
+                    <span data-i18n="buy_summary_total_estimated">Total estimado:</span>
+                    <span class="total-price">—</span>
+                </div>
+                
+                <p class="summary-note"
+                   data-i18n="buy_summary_note_generic">
+                    El importe final se calculará al añadir acompañantes, mascota e intolerancias.
+                </p>
+            </aside>
+
+        </div>
+
+        <div class="bottom-actions">
+            <button class="btn-action secondary"
+                    type="button"
+                    id="btn-volver-inicio"
+                    data-i18n="buy_btn_back_home">
+                VOLVER AL INICIO
+            </button>
+            <button id="btn-continuar"
+                    class="btn-action primary"
+                    type="button"
+                    disabled
+                    data-i18n="buy_btn_continue_companions">
+                CONTINUAR CON ACOMPAÑANTES
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/buy-p1.js"></script>
+
+</body>
+</html>

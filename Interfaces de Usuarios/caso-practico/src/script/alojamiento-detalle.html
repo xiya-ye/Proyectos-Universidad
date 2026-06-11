@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riad Al Qamar - Mochileros Sin Fronteras</title>
+    <link rel="stylesheet" href="/style/alojamiento-detalle.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin="">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <span data-i18n="breadcrumb_home">Inicio</span> > <span data-i18n="breadcrumb_accommodations">Alojamientos</span> > <span>Nombre del alojamiento</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <!-- Title Section -->
+                    <div class="title-section">
+                        <h2 class="accommodation-title">Riad Al Qamar</h2>
+                        <p class="location">Barrio de Zamalek - El Cairo, Egipto</p>
+                        <div class="rating-badge">
+                            <span class="rating-number">4.7</span>
+                            <span class="rating-text">Excelente · 3 reseñas</span>
+                        </div>
+                    </div>
+
+                    <!-- Image Gallery -->
+                    <div class="gallery">
+                        <div class="gallery-main">
+                            <img src="https://via.placeholder.com/800x450" alt="Riad Al Qamar" class="main-image">
+                        </div>
+                        <div class="gallery-thumbnails">
+                            <img src="https://via.placeholder.com/150x100" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="https://via.placeholder.com/150x100" alt="Thumbnail 2" class="thumbnail">
+                            <img src="https://via.placeholder.com/150x100" alt="Thumbnail 3" class="thumbnail">
+                            <img src="https://via.placeholder.com/150x100" alt="Thumbnail 4" class="thumbnail">
+                            <img src="https://via.placeholder.com/150x100" alt="Thumbnail 5" class="thumbnail">
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <section class="description-section">
+                        <h3 data-i18n="section_desc">Descripción general</h3>
+                        <p class="description-text">
+                            Lorem ipsum dolor sit amet consectetur adipiscing elit placerat, vehicula faucibus integer phasellus hendrerit nec semper, molestie auctor nisl velit tristique nibh ac. Vestibulum tincidunt euismod scelerisque et dictumst magna lacinia, pulvinar ligula varius viverra malesuada purus, sollicitudin volutpat pellentesque blandit dignissim consequat vivamus. Tincidunt placerat etiam ridiculus justo quam malesuada himenaeos nascetur nullam sociis elementum purus ac risus potenti senectus, mattis nec metus nisl a ultrices nibh.
+                        </p>
+                        <div class="tags">
+                            <span class="tag" data-i18n="tag_couples">Ideal para parejas</span>
+                            <span class="tag" data-i18n="tag_center">Cerca del centro</span>
+                            <span class="tag" data-i18n="tag_breakfast">Desayuno incluido</span>
+                            <span class="tag" data-i18n="tag_pets">Mascotas permitidas</span>
+                        </div>
+                    </section>
+
+                    <!-- Services -->
+                    <section class="services-section">
+                        <h3 data-i18n="section_services">Servicios y comodidades</h3>
+                        <div class="services-grid">
+                            <div class="service-item">· Wifi gratis</div>
+                            <div class="service-item">· Desayuno incluido</div>
+                            <div class="service-item">· Aire acondicionado</div>
+                            <div class="service-item">· Parking privado</div>
+                            <div class="service-item">· Piscina</div>
+                            <div class="service-item">· Traslado al aeropuerto</div>
+                            <div class="service-item">· Recepción 24h</div>
+                        </div>
+                    </section>
+
+                    <!-- Rules -->
+                    <section class="rules-section">
+                        <h3 data-i18n="section_rules">Normas del alojamiento</h3>
+                        <p>Check-in: 14:00-22:00 · Check-out: hasta las 11:00</p>
+                        <p>No se permiten fiestas · No está permitido fumar en las habitaciones</p>
+                    </section>
+
+                    <!-- Reviews -->
+                    <section class="reviews-section">
+                        <div class="reviews-header">
+                            <div>
+                                <h3 data-i18n="section_reviews">Reseñas de viajeros</h3>
+                                <p>3 reseñas · Nota media 4.5/5</p>
+                            </div>
+                            <div class="reviews-buttons">
+                                <button class="btn-secondary">Ver todas</button>
+                                <button class="btn-primary">Escribir reseña</button>
+                            </div>
+                        </div>
+
+                        <!-- Review Items -->
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">A</div>
+                                    <div>
+                                        <p class="reviewer-name">Ana P.</p>
+                                        <p class="review-date">Estancia en diciembre 2024</p>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <span>★★★★★</span>
+                                    <span class="rating-value">4.0</span>
+                                </div>
+                            </div>
+                            <p class="review-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis congue felis eu egestas. Maecenas in sapien lobortis, sodales turpis vitae, commodo eros. Donec arcu odio, semper a posuere a, fringilla in leo. Sed sed dictum eros. Nunc varius, lectus ut iaculis consequat, lorem justo auctor tortor, et aliquet orci purus tincidunt turpis. Duis lacinia odio vel fermentum pretium. Donec suscipit porta odio, ac volutpat nibh condimentum vel. Nam hendrerit scelerisque leo, quis molestie est cursus eget.
+                            </p>
+                            <button class="btn-link">Viaje en pareja</button>
+                        </div>
+
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">A</div>
+                                    <div>
+                                        <p class="reviewer-name">Ana P.</p>
+                                        <p class="review-date">Estancia en diciembre 2024</p>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <span>★★★★★</span>
+                                    <span class="rating-value">4.0</span>
+                                </div>
+                            </div>
+                            <p class="review-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis congue felis eu egestas. Maecenas in sapien lobortis, sodales turpis vitae, commodo eros. Donec arcu odio, semper a posuere a, fringilla in leo. Sed sed dictum eros. Nunc varius, lectus ut iaculis consequat, lorem justo auctor tortor, et aliquet orci purus tincidunt turpis. Duis lacinia odio vel fermentum pretium. Donec suscipit porta odio, ac volutpat nibh condimentum vel. Nam hendrerit scelerisque leo, quis molestie est cursus eget.
+                            </p>
+                            <button class="btn-link">Viaje en pareja</button>
+                        </div>
+
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-avatar">A</div>
+                                    <div>
+                                        <p class="reviewer-name">Ana P.</p>
+                                        <p class="review-date">Estancia en diciembre 2024</p>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <span>★★★★★</span>
+                                    <span class="rating-value">4.0</span>
+                                </div>
+                            </div>
+                            <p class="review-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis congue felis eu egestas. Maecenas in sapien lobortis, sodales turpis vitae, commodo eros. Donec arcu odio, semper a posuere a, fringilla in leo. Sed sed dictum eros. Nunc varius, lectus ut iaculis consequat, lorem justo auctor tortor, et aliquet orci purus tincidunt turpis. Duis lacinia odio vel fermentum pretium. Donec suscipit porta odio, ac volutpat nibh condimentum vel. Nam hendrerit scelerisque leo, quis molestie est cursus eget.
+                            </p>
+                            <button class="btn-link">Viaje en pareja</button>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Column - Booking Card -->
+                <div class="right-column">
+                    <div class="booking-card">
+                        <div class="price-section">
+                            <span class="price">...</span>
+                            <span class="price-label" data-i18n="booking_per_night">por noche</span>
+                        </div>
+                        
+                        <p class="booking-details"></p>
+                        
+                        <div class="booking-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label data-i18n="label_checkin">Llegada</label>
+                                    <input type="date" id="checkinInput">
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="label_checkout">Salida</label>
+                                    <input type="date" id="checkoutInput">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" style="margin-top: 10px;">
+                                <label data-i18n="label_people">Personas</label>
+                                <input type="number" id="peopleInput" min="1" max="10" value="2">
+                            </div>
+                        </div>
+
+                        <div class="total-section">
+                            <span data-i18n="label_total">Total estimado:</span>
+                            <span class="total-price">...</span>
+                        </div>
+
+                        <button class="btn-reserve" data-i18n="btn_reserve_room">Reservar este alojamiento</button>
+                        <p class="reserve-note" data-i18n="reserve_note">No se realizará ningún cargo inmediato.</p>
+
+                        <div class="rating-summary">
+                            <h4 data-i18n="section_ratings">Valoración de los huéspedes</h4>
+                            
+                            <div class="rating-overall">
+                                <span class="rating-badge">...</span>
+                            </div>
+                            
+                            <div class="rating-breakdown">
+                                <div class="rating-item">
+                                    <span data-i18n="rating_cleanliness">Limpieza</span>
+                                    <span class="rating-badge">4.8</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span data-i18n="rating_location">Ubicación</span>
+                                    <span class="rating-badge">4.9</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span data-i18n="rating_staff">Personal</span>
+                                    <span class="rating-badge">4.7</span>
+                                </div>
+                            </div>
+                            
+                            <p class="rating-note" data-i18n="rating_based_on">Basado en reseñas reales de viajeros como tú.</p>
+                        </div>
+
+                        <div class="location-section">
+                            <h4 data-i18n="section_location">Ubicación</h4>
+                            <p class="location">...</p>
+                            <div id="map" class="map-placeholder"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reviewModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3 data-i18n="modal_title">Escribe tu reseña</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label data-i18n="modal_name">Tu nombre</label>
+                        <input type="text" id="reviewName" required placeholder="Ej: Laura M.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-i18n="modal_type">Tipo de viaje</label>
+                        <select id="reviewType">
+                            <option value="Viaje en pareja">Viaje en pareja</option>
+                            <option value="Con amigos">Con amigos</option>
+                            <option value="Familia">Familia</option>
+                            <option value="Mochilero">Mochilero</option>
+                            <option value="Viaje solo/a">Viaje solo/a</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="modal_rating">Puntuación</label>
+                        <select id="reviewRating">
+                            <option value="5">★★★★★ (5)</option>
+                            <option value="4">★★★★☆ (4)</option>
+                            <option value="3">★★★☆☆ (3)</option>
+                            <option value="2">★★☆☆☆ (2)</option>
+                            <option value="1">★☆☆☆☆ (1)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="modal_comment">Tu opinión</label>
+                        <textarea id="reviewText" rows="4" required placeholder="Cuéntanos tu experiencia..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;" data-i18n="modal_submit">Publicar reseña</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <script src="/js/modules/apply-settings.js"></script>
+     <script src="/js/bases-datos/info-alojamientos.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/detalle-alojamiento.js"></script>
+</body>
+</html>

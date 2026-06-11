@@ -1,0 +1,699 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fafafa;
+}
+
+/* Layout genérico */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #333;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-selector {
+    font-size: 14px;
+    color: #666;
+}
+
+.language-selector .active {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Enlaces de usuario / accesibilidad en el header */
+.user-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.user-link:hover {
+    color: #333;
+}
+
+.a11y-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.a11y-link:hover {
+    color: #333;
+    border-color: #ccc;
+}
+
+.btn-comprar {
+    background-color: #d0d0d0;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-decoration: none;  
+    display: inline-block;
+    color: #333;
+    text-align: center;
+}
+
+.btn-comprar:hover {
+    background-color: #c0c0c0;
+}
+
+/* layout y encabezado*/
+.guias-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #333;
+}
+
+.page-header-guias {
+    margin-bottom: 2rem;
+}
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.title-row h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.title-row p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Botón Suscribirme */
+.btn-suscribir {
+    background-color: #e0e0e0;
+    color: #555;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* filtros y barra de búsqueda */
+.filters-dropdown-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee; /* Línea sutil separadora */
+}
+
+.filter-input-search,
+.filter-select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #eee;
+    border-radius: 4px; /* Bordes un poco redondeados pero sutiles */
+    background-color: white;
+    font-size: 0.9rem;
+    color: #666;
+    min-width: 160px;
+}
+
+.filter-input-search {
+    flex: 1; /* Ocupa el espacio sobrante si quieres */
+    min-width: 250px;
+}
+
+/* TAGS (Migrado desde home.css) */
+.search-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.tag {
+    padding: 0.4rem 1rem;
+    border-radius: 20px; /* Forma de píldora */
+    font-size: 0.85rem;
+    color: #666;
+    cursor: pointer;
+    border: 1px solid #eee;
+    background: white;
+    transition: all 0.2s;
+}
+
+.tag:hover {
+    border-color: #ccc;
+}
+
+.tag.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+/* CONTADOR Y ORDENAR */
+.results-count-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.sort-wrapper {
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sort-dropdown {
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+/* tarjetas de guías */
+.guides-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espacio entre tarjetas */
+}
+
+.guide-card {
+    display: flex;
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Efecto hover suave */
+    transition: box-shadow 0.3s ease;
+}
+
+.guide-card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Imagen izquierda */
+.guide-image {
+    width: 260px;
+    min-width: 260px;
+    object-fit: cover;
+    /* La altura se ajusta al contenido flex, pero ponemos un min */
+    min-height: 200px; 
+}
+
+/* Contenido central */
+.guide-content {
+    flex: 1; /* Ocupa el espacio central */
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.guide-meta-top {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.guide-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    color: #222;
+}
+
+.guide-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    /* Limitar a 3 líneas si es muy largo */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Tags dentro de la tarjeta */
+.guide-tags-bottom {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.feature-tag {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    color: #777;
+}
+
+/* barra lateral */
+.guide-sidebar {
+    width: 200px;
+    min-width: 200px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Todo alineado a la derecha */
+    justify-content: space-between;
+    border-left: 1px solid #f9f9f9; /* Separación muy sutil */
+}
+
+.guide-reading-time {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.rating-small {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 0.2rem;
+}
+
+.social-share {
+    margin-top: auto; /* Empuja hacia abajo */
+    margin-bottom: 1rem;
+    color: #aaa;
+    font-size: 0.8rem;
+    display: flex;
+    gap: 8px;
+}
+
+.btn-leer-guia {
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+}
+
+.btn-leer-guia:hover {
+    background-color: #ccc;
+}
+
+/* paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.page-btn {
+    border: none;
+    background: #f0f0f0;
+    color: #666;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Circulares */
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn.active {
+    background: #8ceabb; /* El verde menta de la imagen */
+    color: white;
+    font-weight: bold;
+}
+
+.page-btn.prev, .page-btn.next {
+    width: auto;
+    padding: 0 1rem;
+    border-radius: 20px;
+}
+
+.page-dots {
+    display: flex;
+    align-items: center;
+    color: #999;
+}
+
+/* bottom-extras-grid */
+.bottom-extras-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 2rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f0f0f0; /* Línea separadora sutil arriba */
+}
+
+/* Estilos comunes para las 3 tarjetas */
+.extra-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: 100%; /* Para que tengan la misma altura */
+}
+
+.extra-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: #111;
+    font-weight: 700;
+}
+
+/* COLUMNA 1: Colecciones */
+.collections-list {
+    list-style: none;
+    padding: 0;
+}
+
+.collections-list li {
+    margin-bottom: 0.8rem;
+}
+
+.collections-list a {
+    color: #3b82f6; /* Azul bonito */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.collections-list a:hover {
+    text-decoration: underline;
+    color: #2563eb;
+}
+
+/* COLUMNA 2: Populares */
+.popular-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pop-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.pop-title {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    margin-bottom: 0.2rem;
+}
+
+.pop-title:hover {
+    color: #000;
+}
+
+.pop-meta {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* COLUMNA 3: Descuentos y Promos (Estilo especial) */
+.promos-card {
+    background-color: #eff6ff; /* Fondo azul muy clarito */
+    border: none; /* Sin borde o borde azul sutil */
+}
+
+.promos-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.promos-list li {
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+.promos-list li span {
+    background: #fff;
+    padding: 0 4px;
+    border: 1px solid #dbeafe;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+.link-ver-todas {
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.link-ver-todas:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: #666;
+}
+
+/* =========================================
+   ESTILOS DEL MODAL DE SUSCRIPCIÓN
+   ========================================= */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Fondo oscuro */
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px); /* Efecto borroso chulo */
+}
+
+.modal.active {
+    display: flex; /* Se muestra al activar */
+}
+
+.modal-content.subscription-content {
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.modal-header p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-modal-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-modal-submit:hover {
+    background-color: #555;
+}
+
+.modal-footer-text {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 1rem;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+    .guide-card {
+        flex-direction: column;
+    }
+    
+    .guide-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .guide-sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        border-left: none;
+        border-top: 1px solid #f9f9f9;
+    }
+    
+    .btn-leer-guia {
+        width: auto;
+        padding: 0.6rem 2rem;
+    }
+    
+    .social-share {
+        margin: 0;
+        display: none; /* Ocultar en tablets si molesta */
+    }
+
+    .bottom-extras-grid {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        gap: 1.5rem;
+    }
+}

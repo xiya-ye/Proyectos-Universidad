@@ -1,0 +1,771 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =====================================
+   HEADER (CLAVADO A home.css)
+   ===================================== */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Fuente EXACTA que en home SOLO en el header */
+.header,
+.header * {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Mismo padding lateral que en home SOLO para el header */
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #333;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-selector {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Aseguramos color homogéneo en los spans del selector */
+.language-selector span {
+    color: #666;
+}
+
+.language-selector .active {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Enlace "Mi cuenta" como en home */
+.user-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.user-link:hover {
+    color: #333;
+}
+
+/* Icono de accesibilidad: IGUAL que en home */
+.a11y-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.a11y-link:hover {
+    color: #333;
+    border-color: #ccc;
+}
+
+.btn-comprar {
+    background-color: #d0d0d0;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-decoration: none;  
+    display: inline-block;
+    color: #333;
+    text-align: center;
+}
+
+.btn-comprar:hover {
+    background-color: #c0c0c0;
+}
+
+/* =====================================
+   BREADCRUMB
+   ===================================== */
+.breadcrumb {
+    background-color: #fff;
+    padding: 15px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* =====================================
+   CONTENIDO PRINCIPAL
+   ===================================== */
+.main-content {
+    padding: 30px 0;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Left Column */
+.left-column {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.title-section {
+    margin-bottom: 20px;
+}
+
+.accommodation-title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.location {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.rating-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.rating-number {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Gallery */
+.gallery {
+    margin-bottom: 30px;
+}
+
+.gallery-main {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.thumbnail {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    border-color: #333;
+}
+
+/* Description Section */
+.description-section,
+.services-section,
+.rules-section,
+.reviews-section {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.description-section:last-child,
+.reviews-section {
+    border-bottom: none;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.description-text {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background-color: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* Services */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.service-item {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Rules */
+.rules-section p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Reviews */
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.reviews-header h3 {
+    margin-bottom: 5px;
+}
+
+.reviews-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.reviews-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: #333;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #555;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+.review-item {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.review-date {
+    font-size: 13px;
+    color: #999;
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.review-rating span:first-child {
+    color: #ffc107;
+    font-size: 16px;
+}
+
+.rating-value {
+    font-weight: 600;
+}
+
+.review-text {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+
+/* Right Column - Booking Card */
+.right-column {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.booking-card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+    border: 1px solid #eee;
+}
+
+.price-section {
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.price-label {
+    color: #666;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.booking-details {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.booking-form {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f8f9fa;
+}
+
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.total-price {
+    font-size: 20px;
+}
+
+.btn-reserve {
+    width: 100%;
+    padding: 15px;
+    background-color: #d0d0d0;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.btn-reserve:hover {
+    background-color: #c0c0c0;
+}
+
+.reserve-note {
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Rating Summary */
+.rating-summary {
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+
+.rating-summary h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.rating-overall {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.rating-overall .rating-number {
+    background-color: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.rating-breakdown {
+    margin-bottom: 10px;
+}
+
+.rating-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.rating-badge {
+    background-color: #f8f9fa;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.rating-note {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Location */
+.location-section {
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+
+.location-section h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.location-section p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 400px;
+    background-color: #eee;
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Modal de Reseñas */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal h3 {
+    margin-bottom: 20px;
+}
+
+/* =====================================
+   FOOTER (CLAVADO A home.css + FIX SPAN)
+   ===================================== */
+footer {
+    background: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #333; /* Override del footer oscuro de layout.css */
+}
+
+/* Misma fuente que home en el footer */
+footer,
+footer * {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: #666;
+}
+
+
+/* =====================================
+   RESPONSIVE
+   ===================================== */
+
+/* Contenido + columna derecha */
+@media (max-width: 968px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .right-column {
+        position: static;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reviews-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Header responsive IGUAL que en home + ajustes varios */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Resto de ajustes pequeños (sin tocar header aquí) */
+@media (max-width: 640px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-thumbnails {
+        flex-wrap: wrap;
+    }
+    
+    .thumbnail {
+        width: calc(50% - 5px);
+    }
+}

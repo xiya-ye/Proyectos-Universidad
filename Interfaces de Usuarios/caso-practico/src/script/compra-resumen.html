@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen y Pago - Mochileros Sin Fronteras</title>
+
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <!-- Reutilizamos los estilos base del flujo de compra -->
+    <link rel="stylesheet" href="/style/buy-p1.css">
+    <!-- Estilos específicos de este paso -->
+    <link rel="stylesheet" href="/style/compra-resumen.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login / dashboard -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="buy-container">
+        
+        <div class="page-intro">
+            <h1 data-i18n="buy_main_title">COMPRA DE BILLETES</h1>
+            <p data-i18n="buy_step5_subtitle">Paso 5 de 5 · Revisa los datos de tu reserva y completa el pago.</p>
+        </div>
+
+        <div class="stepper-wrapper">
+            <div class="step-item completed">
+                <div class="step-circle">1</div>
+                <span class="step-label" data-i18n="buy_step1_label">Datos del viaje</span>
+            </div>
+            <div class="step-item completed">
+                <div class="step-circle">2</div>
+                <span class="step-label" data-i18n="buy_step2_label">Acompañantes</span>
+            </div>
+            <div class="step-item completed">
+                <div class="step-circle">3</div>
+                <span class="step-label" data-i18n="buy_step3_label">Mascota</span>
+            </div>
+            <div class="step-item completed">
+                <div class="step-circle">4</div>
+                <span class="step-label" data-i18n="buy_step4_label">Intolerancias</span>
+            </div>
+            <div class="step-item active">
+                <div class="step-circle">5</div>
+                <span class="step-label" data-i18n="buy_step5_label">Resumen y pago</span>
+            </div>
+        </div>
+
+        <div class="buy-grid">
+            
+            <!-- Columna izquierda: PAGO (formulario) -->
+            <section class="form-card payment-card">
+                <h2 data-i18n="buy_payment_title">Pago</h2>
+                <p class="form-instruction" data-i18n="buy_payment_instruction">
+                    Revisa el resumen de la derecha y selecciona el método de pago para confirmar tu reserva.
+                </p>
+
+                <form id="paymentForm" class="travel-form payment-form">
+                    
+                    <!-- Método de pago -->
+                    <div class="form-section">
+                        <span class="section-label" data-i18n="buy_payment_method_label">Método de pago</span>
+                        
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="metodoPago" value="tarjeta" id="radioTarjeta" checked>
+                                <span class="radio-label" data-i18n="buy_payment_method_card">Tarjeta de crédito/débito</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="metodoPago" value="paypal" id="radioPaypal">
+                                <span class="radio-label" data-i18n="buy_payment_method_paypal">PayPal</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Detalles de pago -->
+                    <div id="paymentDetails">
+                        <!-- Datos Tarjeta -->
+                        <div id="tarjetaDetails" class="payment-details active">
+                            <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    class="input-field" 
+                                    id="nombreTitular"
+                                    placeholder="Nombre del titular..."
+                                    data-i18n-placeholder="buy_cc_holder_placeholder"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input 
+                                    type="text" 
+                                    class="input-field" 
+                                    id="numeroTarjeta"
+                                    placeholder="Número de tarjeta..."
+                                    maxlength="19"
+                                    data-i18n-placeholder="buy_cc_number_placeholder"
+                                    required
+                                >
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        class="input-field" 
+                                        id="caducidad"
+                                        placeholder="Caducidad (MM/AA)..."
+                                        maxlength="5"
+                                        data-i18n-placeholder="buy_cc_expiry_placeholder"
+                                        required
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        class="input-field" 
+                                        id="cvc"
+                                        placeholder="CVC"
+                                        maxlength="3"
+                                        data-i18n-placeholder="buy_cc_cvc_placeholder"
+                                        required
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PayPal -->
+                        <div id="paypalDetails" class="payment-details">
+                            <p class="paypal-message" data-i18n="buy_alert_redirect_paypal">
+                                Serás redirigido a PayPal para completar el pago de forma segura.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Total -->
+                    <div class="payment-total">
+                        <span class="total-label" data-i18n="buy_payment_total_label">Total</span>
+                        <span class="payment-total-amount" id="payment-total">—</span>
+                    </div>
+
+                    <!-- Términos -->
+                    <div class="form-group terms-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="acceptTerms">
+                            <span data-i18n="buy_terms_label">He leído y acepto las condiciones de uso y la política de cancelación.</span>
+                        </label>
+                    </div>
+
+                    <p class="payment-notice" data-i18n="buy_payment_notice">
+                        La confirmación de la reserva se enviará a los correos indicados para el titular y los acompañantes.
+                    </p>
+
+                </form>
+            </section>
+
+            <!-- Columna derecha -->
+            <aside class="summary-card">
+                <h3 data-i18n="buy_summary_full_title">Resumen de la reserva</h3>
+
+                <div class="summary-section">
+                    <h4 class="section-title" data-i18n="buy_summary_tripdata_title">Datos del viaje</h4>
+                    <div class="section-content">
+                    <li><span data-i18n="buy_summary_origin">Origen:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_destination">Destino:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_dates">Fechas:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_people">Personas:</span> <strong>—</strong></li>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h4 class="section-title" data-i18n="buy_summary_companions_title">Acompañantes</h4>
+                    <div class="section-content" id="res-acompanantes-list">
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h4 class="section-title" data-i18n="buy_summary_pet_title">Mascota</h4>
+                    <div class="section-content">
+                        <p id="res-mascota">No</p>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h4 class="section-title" data-i18n="buy_summary_intolerances_title">Intolerancias y alergias</h4>
+                    <div class="section-content">
+                        <p id="res-intolerancias">Ninguna</p>
+                    </div>
+                </div>
+
+                <div class="summary-section price-breakdown">
+                    <h4 class="section-title" data-i18n="buy_summary_price_title">Desglose de precio</h4>
+                    <div class="section-content">
+                        <p id="res-billetes" data-i18n="buy_price_tickets_label">Billetes: —</p>
+                        <p class="total-line" data-i18n="buy_summary_total_estimated">
+                            Total estimado: <strong id="res-total">—</strong>
+                        </p>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+        <!-- Botones inferiores unificados -->
+        <div class="bottom-actions">
+            <a href="compra-intolerancias.html" id="btn-volver-intolerancias" class="btn-action secondary" data-i18n="buy_btn_back_to_intolerances">
+                VOLVER A INTOLERANCIAS
+            </a>
+            <button id="btn-confirmar-reserva" class="btn-action primary" data-i18n="buy_btn_confirm_booking">
+                CONFIRMAR RESERVA
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/compra-resumen.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+
+</body>
+</html>

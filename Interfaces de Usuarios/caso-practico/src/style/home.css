@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fafafa;
+}
+
+/* Layout genérico */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #333;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-selector {
+    font-size: 14px;
+    color: #666;
+}
+
+.language-selector .active {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Enlaces de usuario / accesibilidad en el header */
+.user-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.user-link:hover {
+    color: #333;
+}
+
+.a11y-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.a11y-link:hover {
+    color: #333;
+    border-color: #ccc;
+}
+
+.btn-comprar {
+    background-color: #d0d0d0;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-decoration: none;  
+    display: inline-block;
+    color: #333;
+    text-align: center;
+}
+
+.btn-comprar:hover {
+    background-color: #c0c0c0;
+}
+
+/* Hero / buscador */
+.hero {
+    background: #f5f5f5;
+    padding: 3rem 2rem;
+}
+
+.search-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-section h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.search-section h3 {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.search-form {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.search-form input,
+.search-form select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 150px;
+}
+
+.search-form select {
+    min-width: 120px;
+}
+
+.btn-buscar {
+    background: #ddd;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-buscar:hover {
+    background: #ccc;
+}
+
+.search-tags {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.tag:hover {
+    background: #e8e8e8;
+}
+
+/* Secciones generales */
+.section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    color: #333;
+}
+
+/* Botón de card (ahora también <a>) */
+.card-btn {
+    background: #ddd;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    text-align: center;
+}
+
+.card-btn:hover {
+    background: #ccc;
+}
+
+/* Foro */
+.forum-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.forum-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.forum-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.forum-content p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.forum-meta {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+/* Botón VER HILO (ahora también <a>) */
+.btn-ver-hilo {
+    background: #ddd;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-ver-hilo:hover {
+    background: #ccc;
+}
+
+/* Footer */
+footer {
+    background: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+    }
+    
+    .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-form input,
+    .search-form select {
+        width: 100%;
+    }
+    
+    .forum-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .btn-ver-hilo {
+        width: 100%;
+    }
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mundo a trazos</title>
+        <link rel="stylesheet" href="style/style_c.css">
+    </head>
+    <body>
+        <header>
+            <h1>Mundo a trazos</h1>
+            <nav>
+                <a href="principal.html">Inicio</a>
+                <a href="#">Experiencias</a>
+                <a href="#">Consejos</a>
+                <a href="#">Foro</a>
+                <a href="#">Contacto</a>
+            </nav>            
+            <div class="logo"> 
+                <img src="images/logo.jpg" alt="logo" class="logo-img">
+                <select name="idioma" id="idioma">
+                    <option value="español">ES</option>
+                    <option value="frances">FR</option>
+                    <option value="ingles">IN</option>
+                    <option value="ingles">IT</option>
+                </select>
+            </div>
+            
+        </header>
+        
+        <div class="contenido">
+            <div class="izquierda">
+                <section>
+                    <div class="imagen">
+                        <div class="pack">
+                            <div class="titulo">
+                                <h2 style="color:aliceblue" id="pack-titulo">Aventura Australiana</h2>
+                            </div>
+
+                            <div class="info">
+                                <p style="color:aliceblue" id="pack-descripcion">Ruta: Costa Este de Sydney a Cairns, incluye guías digitales + mapas interactivos + lista de hostales y transporte barato</p>
+                                <p style="color:aliceblue" id="pack-precio">Precio: 320€</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
+
+                <article>
+                    <h3>Descripción del pack:</h3>
+                    <div id="descripcion-detallada">
+                        <p>El pack "Aventura Australiana" te permite recorrer la Costa Este de Australia, desde Sydney 
+                            hasta Cairns, pasando por lugares como Byron Bay, Brisbane y la Gran Barrera de Coral. 
+                            Incluye guías digitales con recomendaciones locales, mapas interactivos, alojamientos económicos 
+                            y opciones de transporte accesible.</p>
+                        <p>Ideal para viajeros independientes que quieren combinar playas, naturaleza y cultura, todo por 320€.</p>
+                    </div>
+                </article>
+            </div>
+            <aside>
+                <h2>Formulario de compra</h2>
+                <form id="form-compra" action="principal.html">    
+                    <input type="text" id="fname" name="fname" placeholder="Nombre completo"><br><br>
+                    <input type="email" id="lname" name="lname" placeholder="Correo electrónico"><br><br>
+                    <h3>Tipo de tarjeta</h3>
+                    <select name="tarjeta" id="tarjeta">
+                        <option value=""></option>
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">MasterCard</option>
+                        <option value="amex">American Express</option>
+                    </select><br><br>
+                    <input type="text" id="numtarjeta" name="numtarjeta" placeholder="Número de tarjeta"><br><br>
+                    <input type="text" id="titulartarjeta" name="titulartarjeta" placeholder="Nombre del titular"><br><br>
+                    
+                    <div class="caducidad_cvv">
+                        <h4>Fecha de caducidad</h4>
+                        <div class="fecha">
+                            <input type="date" id="fecha" name="fecha">
+                        </div> 
+                        <div class="codigo_cvv">
+                            <input type="text" id="cvv" name="cvv" placeholder="Código CVV">
+                        </div>
+                    </div>
+
+                    <br>
+                    <input type="submit" value="Comprar" class="button"> 
+                    <input type="reset" value="Borrar" class="button">
+                </form>
+            </aside>
+        </div>
+        
+        <br>
+        <footer>
+            <p>&#169; 2025 Mochileros Sin Fronteras</p>
+            <div class="centro-footer">
+                <nav class="center">
+                    <a href="#">Sobre nosotros</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Ayuda</a>
+                </nav>
+                <div class="center">
+                    <img src="images/instagram.png" alt="instagram" width="30" height="30">
+                    <img src="images/tiktok.png" alt="tiktok" width="30" height="30">
+                    <img src="images/facebook.png" alt="facebook" width="30" height="30">
+                </div>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Suscríbete a nuestro newsletter</h3>
+                <input type="email" id="email-footer" name="email" placeholder="Tu correo electrónico">
+                <a href="#" class="button">Suscribirse</a>
+            </div>
+        </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const packData = localStorage.getItem('packSeleccionado');
+            
+            if (!packData) {
+                console.error("No hay datos en localStorage");
+                return;
+            }
+
+            let pack;
+            try {
+                pack = JSON.parse(packData);
+                console.log("Pack cargado:", pack);
+            } catch (error) {
+                console.error("Error parseando JSON:", error);
+                return;
+            }
+
+            if (pack && pack.titulo) {
+                // Actualizar el título
+                document.getElementById('pack-titulo').textContent = pack.titulo;
+                
+                // Actualizar la descripción
+                document.getElementById('pack-descripcion').textContent = pack.descripcion;
+                
+                // Actualizar el precio
+                document.getElementById('pack-precio').textContent = pack.precio;
+                
+                // Actualizar la imagen de fondo según el pack
+                const imagenSection = document.querySelector('.imagen');
+                if (pack.imagenUrl) {
+                    imagenSection.style.backgroundImage = `url("${pack.imagenUrl}")`;
+                }
+                
+                // Actualizar la descripción detallada
+                let descripcionCompleta = '';
+                if (pack.imagenUrl && pack.imagenUrl.includes('pack.jpg')) {
+                    descripcionCompleta = `
+                        <p>El pack "Aventura Australiana" te permite recorrer la Costa Este de Australia, desde Sydney 
+                        hasta Cairns, pasando por lugares como Byron Bay, Brisbane y la Gran Barrera de Coral. 
+                        Incluye guías digitales con recomendaciones locales, mapas interactivos, alojamientos económicos 
+                        y opciones de transporte accesible.</p>
+                        <p>Ideal para viajeros independientes que quieren combinar playas, naturaleza y cultura, todo por 320€.</p>
+                    `;
+                } else if (pack.imagenUrl && pack.imagenUrl.includes('pack1.jpg')) {
+                    descripcionCompleta = `
+                        <p>El pack "Tortugas Marinas" te ofrece una experiencia única de exploración de la vida marina 
+                        en Cairns. Incluye guías especializadas de snorkel y buceo, mapas detallados de los mejores 
+                        puntos de inmersión y equipamiento de calidad.</p>
+                        <p>Perfecto para amantes del mar y la vida submarina que buscan una aventura inolvidable.</p>
+                    `;
+                } else if (pack.imagenUrl && pack.imagenUrl.includes('pack2.jpg')) {
+                    descripcionCompleta = `
+                        <p>El pack "Ruta del Dragón" incluye un crucero de 2 días y 1 noche en la espectacular 
+                        Bahía de Lan Ha. Disfruta de kayak entre las formaciones kársticas y explora cuevas 
+                        ocultas con mapas especializados.</p>
+                        <p>Una experiencia única para los amantes de la naturaleza y la aventura acuática.</p>
+                    `;
+                }
+                
+                document.getElementById('descripcion-detallada').innerHTML = descripcionCompleta;
+            }
+        });
+    
+    </script>
+
+     <script type="module" src="/script/version_c.js"></script>
+    
+    </body>
+</html>

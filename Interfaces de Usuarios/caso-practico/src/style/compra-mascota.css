@@ -1,0 +1,94 @@
+/* ===============================
+   ESTILOS ESPECÍFICOS PASO 3 (MASCOTA)
+   Se apoyan en buy-p1.css (buy-container, stepper, summary, etc.)
+   =============================== */
+
+/* Paso completado (1 y 2 en azul, igual que en buy-acomp) */
+.step-item.completed .step-circle {
+    background-color: #6daef4; /* Azul clarito */
+    color: #fff;
+}
+
+.step-item.completed .step-label {
+    color: #0f172a;
+}
+
+/* Formulario de mascota */
+.mascota-form .form-section {
+    margin-bottom: 1.75rem;
+}
+
+.section-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+}
+
+/* Grupo de radios */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.radio-option:hover {
+    border-color: #8ceabb;
+    background-color: #f9fafb;
+}
+
+.radio-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #8ceabb;
+    cursor: pointer;
+}
+
+.radio-label {
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+/* Bloque de detalles de mascota */
+.pet-details {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+
+.pet-details .form-row {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Textarea con el mismo estilo base que los inputs */
+.textarea-field {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+    .pet-details {
+        padding: 1.25rem;
+    }
+}

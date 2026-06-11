@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mochileros Sin Fronteras - Home</title>
+    <link rel="stylesheet" href="/style/home.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="search-section">
+            <h2 data-i18n="hero_title">BUSCADOR DE DESTINOS</h2>
+            <h3 data-i18n="hero_subtitle">SUBTITULO</h3>
+            <form class="search-form" id="search-form">
+                <input 
+                    type="text"
+                    name="destination"
+                    data-i18n-placeholder="search_dest_placeholder"
+                    placeholder="Destino...">
+
+                <input 
+                    type="text"
+                    name="dates"
+                    data-i18n-placeholder="search_dates_placeholder"
+                    placeholder="Fechas...">
+                
+                <select name="people">
+                    <option value="" disabled selected data-i18n="opt_people_placeholder">Personas...</option>
+                    <option value="1" data-i18n="opt_1_person">1 Persona</option>
+                    <option value="2" data-i18n="opt_2_people">2 Personas / Pareja</option>
+                    <option value="group" data-i18n="opt_group">Grupo (3+)</option>
+                    <option value="family" data-i18n="opt_family">Familia</option>
+                </select>
+
+                <select name="tripType">
+                    <option value="" disabled selected data-i18n="opt_type_placeholder">Tipo de viaje...</option>
+                    <option value="adventure" data-i18n="opt_adventure">Aventura</option>
+                    <option value="relax" data-i18n="opt_relax">Relax / Playa</option>
+                    <option value="cultural" data-i18n="opt_cultural">Cultural</option>
+                    <option value="lowcost" data-i18n="opt_lowcost">Low Cost</option>
+                </select>
+
+                <button type="submit" data-i18n="btn_search" class="btn-buscar">BUSCAR</button>
+            </form>
+            <div class="search-tags">
+                <span class="tag" data-i18n="tag_cheap">Sólo alojamientos baratos</span>
+                <span class="tag" data-i18n="tag_pet">Con mascota</span>
+                <span class="tag" data-i18n="tag_forum">Foro de viajes</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 data-i18n="section_featured">ALOJAMIENTOS DESTACADOS</h2>
+        <div class="cards-grid" id="home-accommodations-container"></div>
+    </section>
+    
+    <section class="section">
+        <h2 data-i18n="section_forum">FORO DE LA COMUNIDAD</h2>
+        
+        <div id="home-forum-container"></div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="foro-comunidad.html" class="card-btn" style="display:inline-block; text-decoration:none;" data-i18n="btn_view_all_forum">IR AL FORO COMPLETO</a>
+         </div>
+    </section>
+
+    <section class="section">
+        <h2 data-i18n="section_guides">GUÍAS Y ARTÍCULOS</h2>
+        
+        <div class="cards-grid" id="home-guides-container"></div>
+
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/bases-datos/info-alojamientos.js"></script>
+    <script src="/js/bases-datos/info-foro.js"></script>
+    <script src="/js/bases-datos/info-guias.js"></script>
+    <script src="/js/home.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+</body>
+</html>

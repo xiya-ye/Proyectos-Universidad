@@ -34,3 +34,6 @@ En esta práctica desarrollamos en Python una aplicación segura desde cero, apl
 
 ### Heurística y Optimización (3º)
 Por un lado, aplicamos la Programación Lineal (modelando matemáticamente y usando el solver GLPK en Python) para optimizar la logística de una flota de autobuses, minimizando sus distancias y costes. Por otro lado, trabajamos con Problemas de Satisfacción de Restricciones (CSP) y algoritmos de Búsqueda de Heurística para desarrollar un solver automático.
+
+### Interfaces de Usuario (3º)
+Para esta asignatura, diseñamos e implementamos un sitio web interactivo. Primero trabajamos la usabilidad creando prototipos basados en patrones de diseño, accesibilidad y las heurísticas de Nielsen. Después, desarrollamos todo el frontend utilizando HTML5, CSS3 y JavaScript.

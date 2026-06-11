@@ -1,0 +1,107 @@
+/* ===============================
+   PASO 4: INTOLERANCIAS
+   Se apoya en buy-p1.css (buy-container, stepper, summary, botones...)
+   =============================== */
+
+/* Pasos completados (1, 2 y 3 en azul, igual que en buy-acomp / compra-mascota) */
+.step-item.completed .step-circle {
+    background-color: #6daef4;
+    color: #fff;
+}
+
+.step-item.completed .step-label {
+    color: #0f172a;
+}
+
+/* Formulario de intolerancias */
+.intolerancias-form .form-section {
+    margin-bottom: 1.75rem;
+}
+
+.section-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 0.35rem;
+}
+
+.section-description {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.75rem;
+}
+
+/* Grid de checkboxes */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #8ceabb;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    font-size: 0.9rem;
+    color: #334155;
+}
+
+/* Estado visual activo (lo añade JS con la clase .active) */
+.checkbox-option.active {
+    background-color: #f0fdf4;
+    border-color: #8ceabb;
+}
+
+/* Textarea */
+.form-textarea {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 120px;
+    transition: border-color 0.2s ease;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: #8ceabb;
+}
+
+.form-textarea::placeholder {
+    color: #cbd5e1;
+}
+
+/* Contador de caracteres opcional */
+.textarea-counter {
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+    text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+}

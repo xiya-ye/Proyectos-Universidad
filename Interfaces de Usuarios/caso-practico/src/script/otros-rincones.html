@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otros Rincones - Mochileros Sin Fronteras</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/otros-rincones.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<main class="rincones-container">
+        
+        <div class="page-intro">
+            <h1 data-i18n="corners_title">Otros rincones del mundo</h1>
+            <p data-i18n="corners_intro">Explora ciudades recomendadas por continente.</p>
+        </div>
+
+        <div class="filters-section">
+            <div class="filters-top-row">
+                <input type="text" class="filter-search" placeholder="Buscar ciudad o país..." data-i18n-placeholder="filter_search_placeholder">
+                <div class="filter-dropdown-wrapper">
+                    <select class="filter-select">
+                        <option value="" disabled selected data-i18n="filter_continent">Continente...</option>
+                        <option value="todos" data-i18n="filter_all">Todos</option>
+                        <option value="europa" data-i18n="continent_europe">Europa</option>
+                        <option value="asia" data-i18n="continent_asia">Asia</option>
+                        <option value="africa" data-i18n="continent_africa">África</option>
+                        <option value="oceanía" data-i18n="continent_oceania">Oceanía</option>
+                        <option value="américa del norte" data-i18n="continent_na">América del Norte</option>
+                        <option value="américa del sur" data-i18n="continent_sa">América del Sur</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="filters-tags-row">
+                <button class="filter-tag active" data-val="todos" data-i18n="filter_all">Todos</button>
+                <button class="filter-tag" data-val="europa" data-i18n="continent_europe">Europa</button>
+                <button class="filter-tag" data-val="asia" data-i18n="continent_asia">Asia</button>
+                <button class="filter-tag" data-val="africa" data-i18n="continent_africa">África</button>
+                <button class="filter-tag" data-val="oceanía" data-i18n="continent_oceania">Oceanía</button>
+                <button class="filter-tag" data-val="américa del norte" data-i18n="continent_na">América del Norte</button>
+                <button class="filter-tag" data-val="américa del sur" data-i18n="continent_sa">América del Sur</button>
+            </div>
+        </div>
+
+        <div id="dynamic-cities-grid" class="cities-grid full-width-grid">
+            </div>
+
+        <div id="no-results-msg" style="display: none; text-align: center; padding: 3rem; color: #666;">
+            <h3 data-i18n="no_results_title">No encontramos destinos :(</h3>
+            <p data-i18n="no_results_desc">Prueba con otra búsqueda o filtro.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+    
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/otros-rincones.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+
+</body>
+</html>

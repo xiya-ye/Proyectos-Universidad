@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alojamientos - Mochileros Sin Fronteras</title>
+    <link rel="stylesheet" href="/style/alojamiento.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin="">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1 data-i18n="page_title_cairo">Alojamientos</h1>
+        <p class="results-info"><span data-i18n="results_for">Resultados para</span> 2 personas · 13 - 20 <span data-i18n="month_dec">diciembre</span> 2025 <span id="view-mode-text"></span></p>
+        
+        <div class="search-filters-bar">
+            <input type="text" data-i18n-placeholder="ph_people" placeholder="2 personas" class="filter-input">
+            <input type="text" data-i18n-placeholder="ph_dates" placeholder="Fechas: 13 - 20 dic" class="filter-input">
+            <input type="text" data-i18n-placeholder="ph_price" placeholder="Precio: ≤ 80 €/noche" class="filter-input">
+        </div>
+    </div>
+
+    <div class="forum-layout">
+        <aside class="sidebar">
+            <div class="filters-header">
+                <h3 data-i18n="filter_title">Filtros</h3>
+                <button class="btn-clear" data-i18n="filter_clear">Borrar todo</button>
+            </div>
+
+            <div class="filter-section">
+                <h4 data-i18n="filter_price_night">Precio por noche</h4>
+                <div class="price-slider">
+                    <input type="range" min="0" max="200" value="80" id="priceRange">
+                    <div class="price-inputs">
+                        <input type="text" placeholder="Min" class="price-input">
+                        <input type="text" placeholder="Máx" class="price-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h4 data-i18n="filter_type_title">Tipo de alojamiento</h4>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="filter_type_hotel">Hotel</span></label>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="filter_type_hostel">Hostal / Albergue</span></label>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="filter_type_apartment">Apartamento</span></label>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="filter_type_rural">Casa rural</span></label>
+            </div>
+
+            <div class="filter-section">
+                <h4 data-i18n="filter_rating_title">Puntuación Mínima</h4>
+                <p class="filter-subtitle" data-i18n="filter_any">Cualquiera</p>
+                <label class="checkbox-label"><input type="checkbox"> ≥ 7</label>
+                <label class="checkbox-label"><input type="checkbox"> ≥ 8</label>
+                <label class="checkbox-label"><input type="checkbox"> ≥ 9</label>
+            </div>
+
+            <div class="filter-section">
+                <h4 data-i18n="filter_interests_title">Intereses cercanos</h4>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="interest_culture">Actividades culturales</span></label>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="interest_nature">Naturaleza y paisaje</span></label>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="interest_nightlife">Vida nocturna</span></label>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="interest_family">Ideal para familias</span></label>
+            </div>
+
+            <div class="filter-section">
+                <h4 data-i18n="filter_others_title">Otros filtros</h4>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="other_pets">Mascotas permitidas</span></label>
+                <label class="checkbox-label"><input type="checkbox"> <span data-i18n="other_cancel">Cancelación gratuita</span></label>
+            </div>
+
+            <button class="btn-apply-filters" data-i18n="btn_apply">APLICAR FILTROS</button>
+            <p class="filter-update-text" data-i18n="filter_update_msg">Se actualizarán 24 resultados.</p>
+        </aside>
+
+        <main class="content">
+            <div class="results-header">
+                <div class="results-count">
+                    <strong><span id="count">24</span> <span data-i18n="lodging_found">alojamientos encontrados</span></strong>
+                    <p data-i18n="showing_results">Mostrando resultados para El Cairo · 13-20 dic · 2 personas</p>
+                </div>
+                <div class="view-controls">
+                    <select class="sort-dropdown" id="sortSelect">
+                        <option value="default" data-i18n="sort_default">Ordenar por...</option>
+                        <option value="price-asc" data-i18n="sort_price_asc">Precio: menor a mayor</option>
+                        <option value="price-desc" data-i18n="sort_price_desc">Precio: mayor a menor</option>
+                        <option value="rating" data-i18n="sort_rating">Mejor valorados</option>
+                    </select>
+                    <button class="btn-view active" id="btnLista" data-i18n="view_list">LISTA</button>
+                    <button class="btn-view" id="btnMapa" data-i18n="view_map">MAPA</button>
+                </div>
+            </div>
+
+            <div id="listaView" class="listings-container"></div>
+
+            <div id="mapaView" class="map-view" style="display: none;">
+                <div class="map-listings">
+                    <p class="map-header" data-i18n="map_list_title">Lista de alojamientos (vista mapa)</p>
+                    <p class="map-instructions">
+                        <span data-i18n="map_drag_hint">Arrastra el mapa para ver más.</span>
+                        <button class="btn-map-action" data-i18n="btn_show_list">MOSTRAR LISTA</button>
+                        <button class="btn-map-action" data-i18n="btn_search_area">BUSCAR EN ESTA ÁREA</button>
+                    </p>
+                    <div id="mapItemsContainer"></div>
+                </div>
+                <div class="map-container">
+                    <div id="map" class="map"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/bases-datos/info-alojamientos.js"></script>
+    <script src="/js/modules/traducciones.js"></script> 
+    <script src="/js/modules/language.js"></script>     
+    <script src="/js/alojamiento.js"></script>  
+</body>
+</html>

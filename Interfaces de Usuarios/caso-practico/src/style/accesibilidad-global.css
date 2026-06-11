@@ -1,0 +1,95 @@
+/* style/accessibility-global.css - VERSIÓN MEJORADA */
+
+/* =========================================
+   1. TAMAÑO DE TEXTO (Escalado Global)
+   ========================================= */
+html.size-small { font-size: 85%; }
+html.size-normal { font-size: 100%; }
+html.size-large { font-size: 120%; }
+html.size-xl { font-size: 140%; }
+
+/* =========================================
+   2. FUENTE PARA DISLEXIA
+   ========================================= */
+html.font-dyslexic body {
+    font-family: 'Verdana', 'Arial', sans-serif !important;
+    line-height: 1.8 !important;
+    letter-spacing: 0.05em;
+    word-spacing: 0.1em;
+}
+
+/* =========================================
+   3. MODO ALTO CONTRASTE (EL ARREGLO)
+   ========================================= */
+
+/* A. Fondo base negro para todo el sitio */
+html.mode-high-contrast,
+html.mode-high-contrast body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* B. Forzar contenedores (Header, Cards, Footer, Inputs) a ser negros */
+/* Esto arregla el problema de "texto blanco sobre fondo blanco" */
+html.mode-high-contrast .header,
+html.mode-high-contrast .card,
+html.mode-high-contrast .forum-item,
+html.mode-high-contrast footer,
+html.mode-high-contrast input,
+html.mode-high-contrast select,
+html.mode-high-contrast textarea,
+html.mode-high-contrast .hero,
+html.mode-high-contrast .nav,
+html.mode-high-contrast .account-container, 
+html.mode-high-contrast .dash-card {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important; /* Añadimos borde blanco para distinguir las cajas */
+    box-shadow: none !important; /* Quitamos sombras para que sea más plano y claro */
+}
+
+/* C. Enlaces: Amarillo chillón (Estándar de accesibilidad) */
+html.mode-high-contrast a,
+html.mode-high-contrast .nav-link,
+html.mode-high-contrast .user-link {
+    color: #ffff00 !important;
+    text-decoration: underline !important;
+}
+
+/* D. Botones: Fondo amarillo, texto negro */
+html.mode-high-contrast button, 
+html.mode-high-contrast .btn-comprar,
+html.mode-high-contrast .card-btn,
+html.mode-high-contrast .btn-buscar,
+html.mode-high-contrast .btn-ver-hilo,
+html.mode-high-contrast .btn-save,
+html.mode-high-contrast .btn-detail,
+html.mode-high-contrast .tag {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+    border: 2px solid #ffffff !important;
+    font-weight: bold !important;
+}
+
+/* E. Arreglar Iconos o logos si son imágenes oscuras (Opcional) */
+/* Esto invierte los colores de las imágenes para que se vean sobre negro */
+/* html.mode-high-contrast img {
+    filter: grayscale(100%) invert(100%);
+} */
+
+/* F. Placeholder de los inputs (el texto de ayuda) */
+html.mode-high-contrast ::placeholder {
+    color: #cccccc !important;
+    opacity: 1;
+}
+
+/* =========================================
+   4. REDUCIR MOVIMIENTO
+   ========================================= */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+}

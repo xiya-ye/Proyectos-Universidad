@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Billetes - Intolerancias - Mochileros Sin Fronteras</title>
+
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/buy-p1.css">
+    <link rel="stylesheet" href="/style/compra-intolerancias.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login / dashboard -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="buy-container">
+        
+        <div class="page-intro">
+            <h1 data-i18n="buy_main_title">COMPRA DE BILLETES</h1>
+            <p data-i18n="buy_step4_subtitle">Paso 4 de 5 · Indica intolerancias o alergias relevantes para el grupo de pasajeros.</p>
+        </div>
+
+        <!-- STEPPER -->
+        <div class="stepper-wrapper">
+            <div class="step-item completed">
+                <div class="step-circle">1</div>
+                <span class="step-label" data-i18n="buy_step1_label">Datos del viaje</span>
+            </div>
+            <div class="step-item completed">
+                <div class="step-circle">2</div>
+                <span class="step-label" data-i18n="buy_step2_label">Acompañantes</span>
+            </div>
+            <div class="step-item completed">
+                <div class="step-circle">3</div>
+                <span class="step-label" data-i18n="buy_step3_label">Mascota</span>
+            </div>
+            <div class="step-item active">
+                <div class="step-circle">4</div>
+                <span class="step-label" data-i18n="buy_step4_label">Intolerancias</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">5</div>
+                <span class="step-label" data-i18n="buy_step5_label">Resumen y pago</span>
+            </div>
+        </div>
+
+        <div class="buy-grid">
+            
+            <!-- Columna izquierda: formulario -->
+            <section class="form-card">
+                <h2 data-i18n="buy_intol_title">Intolerancias y alergias</h2>
+                <p class="form-instruction" data-i18n="buy_intol_description">
+                    Selecciona las intolerancias o alergias más comunes y describe cualquier detalle adicional que debamos tener en cuenta.
+                </p>
+
+                <form id="intolerancyForm" class="travel-form intolerancias-form">
+                    <!-- Intolerancias frecuentes -->
+                    <div class="form-section">
+                        <span class="section-label" data-i18n="buy_intol_common_label">Intolerancias/alergias frecuentes</span>
+                        <p class="section-description" data-i18n="buy_intol_common_desc">
+                            Marca todas las opciones que apliquen al conjunto de pasajeros.
+                        </p>
+                        
+                        <div class="checkbox-grid">
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="sin-gluten" id="sinGluten">
+                                <span class="checkbox-label" data-i18n="buy_intol_gluten">Sin gluten</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="sin-lactosa" id="sinLactosa">
+                                <span class="checkbox-label" data-i18n="buy_intol_lactose">Sin lactosa</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="frutos-secos" id="frutoSecos">
+                                <span class="checkbox-label" data-i18n="buy_intol_nuts">Frutos secos</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="marisco" id="marisco">
+                                <span class="checkbox-label" data-i18n="buy_intol_seafood">Marisco</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="huevo" id="huevo">
+                                <span class="checkbox-label" data-i18n="buy_intol_egg">Huevo</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="soja" id="soja">
+                                <span class="checkbox-label" data-i18n="buy_intol_soy">Soja</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="vegano" id="vegano">
+                                <span class="checkbox-label" data-i18n="buy_intol_vegan">Vegano</span>
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" name="alergias" value="vegetariano" id="vegetariano">
+                                <span class="checkbox-label" data-i18n="buy_intol_vegetarian">Vegetariano</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Otras intolerancias -->
+                    <div class="form-section">
+                        <span class="section-label" data-i18n="buy_intol_other_label">Otras intolerancias o alergias</span>
+                        <p class="section-description" data-i18n="buy_intol_other_desc">
+                            Describe aquí cualquier otra condición (p. ej. alergia a medicamentos, celiaquía grave, etc.).
+                        </p>
+                        
+                        <div class="form-group">
+                            <textarea 
+                                class="form-textarea" 
+                                id="otrasAlergias" 
+                                placeholder="Ej.: Ana tiene alergia grave a frutos secos.&#10;Pedro es celíaco; evitar contaminación cruzada."
+                                rows="5"
+                                data-i18n-placeholder="buy_intol_other_placeholder"
+                            ></textarea>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Columna derecha: resumen -->
+            <aside class="summary-card">
+                <h3 data-i18n="buy_summary_provisional_title">Resumen provisional</h3>
+                <ul class="summary-list">
+                    <li><span data-i18n="buy_summary_origin">Origen:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_destination">Destino:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_dates">Fechas:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_people">Personas:</span> <strong>—</strong></li>
+                    <li style="margin-top: 10px; padding-top:10px; border-top: 1px dashed #e2e8f0">
+                        <span data-i18n="buy_summary_companions_added">Acompañantes añadidos:</span> <strong>0</strong>
+                    </li>
+                    <li>
+                        <span data-i18n="buy_summary_pet">Mascota:</span> <strong>—</strong>
+                    </li>
+                    <li>
+                        <span data-i18n="buy_summary_intolerances">Intolerancias:</span> <strong id="summaryIntolerancias">Ninguna</strong>
+                    </li>
+                </ul>
+                
+                <div class="total-row">
+                    <span data-i18n="buy_summary_total_estimated">Total estimado:</span>
+                    <span class="total-price">—</span>
+                </div>
+                
+                <p class="summary-note" data-i18n="buy_summary_note_generic">
+                    El importe final se calculará al añadir acompañantes, mascota e intolerancias.
+                </p>
+            </aside>
+
+        </div>
+
+        <!-- Botones inferiores -->
+        <div class="bottom-actions">
+            <a href="compra-mascota.html" id="btn-volver-mascota" class="btn-action secondary" data-i18n="buy_btn_back_to_pet">
+                VOLVER A MASCOTAS
+            </a>
+            <a href="compra-resumen.html" id="btn-continuar-resumen" class="btn-action primary" data-i18n="buy_btn_continue_summary">
+                CONTINUAR A RESUMEN Y PAGO
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/compra-intolerancias.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+
+</body>
+</html>

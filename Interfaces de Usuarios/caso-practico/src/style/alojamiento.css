@@ -1,0 +1,695 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fafafa;
+}
+
+/* ===============================
+   HEADER (CLAVADO A home.css)
+   =============================== */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Forzamos misma fuente que home SOLO en el header */
+.header,
+.header * {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Igual que home: container más ancho solo dentro del header */
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #333;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Selector de idioma IGUAL que home */
+.language-selector {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Aseguramos que todos los spans tengan el mismo color base */
+.language-selector span {
+    color: #666;
+}
+
+.language-selector .active {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Enlace "Mi cuenta" como en home */
+.user-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.user-link:hover {
+    color: #333;
+}
+
+/* Icono de accesibilidad ♿ IGUAL que en home */
+.a11y-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.a11y-link:hover {
+    color: #333;
+    border-color: #ccc;
+}
+
+.btn-comprar {
+    background-color: #d0d0d0;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-decoration: none;  
+    display: inline-block;
+    color: #333;
+    text-align: center;
+}
+
+.btn-comprar:hover {
+    background-color: #c0c0c0;
+}
+
+/* ===============================
+   RESTO DE LA PÁGINA (SIN CAMBIOS)
+   =============================== */
+
+.results-info {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.search-filters-bar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 150px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-header {
+    max-width: 1400px;     
+    margin: 0 auto;
+    padding: 2rem 2rem; 
+    margin-top: 2rem;
+}
+
+.forum-layout {
+    max-width: 1400px; 
+    margin: 0 auto 4rem auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: start;
+}
+
+.sidebar {
+    width: 280px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    border: 1px solid #e0e0e0;
+}
+
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.filters-header h3 {
+    font-size: 1.1rem;
+}
+
+.btn-clear {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.filter-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-section:last-of-type {
+    border-bottom: none;
+}
+
+.filter-section h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-subtitle {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    margin-right: 0.5rem;
+}
+
+.price-slider {
+    margin: 1rem 0;
+}
+
+.price-slider input[type="range"] {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.price-inputs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.price-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-apply-filters {
+    width: 100%;
+    background: #ddd;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.btn-apply-filters:hover {
+    background: #ccc;
+}
+
+.filter-update-text {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+}
+
+.content {
+    flex: 1;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.results-count strong {
+    font-size: 1.1rem;
+}
+
+.results-count p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.view-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.sort-dropdown {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-view {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-view:hover {
+    background: #f5f5f5;
+}
+
+.btn-view.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.listings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.listing-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
+}
+
+.listing-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.listing-image {
+    width: 280px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.listing-content {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.listing-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.listing-location {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.listing-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.rating-badge {
+    background: #333;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.listing-features {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.feature-tag {
+    background: #f0f0f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.listing-description {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.listing-price {
+    padding: 1.5rem;
+    border-left: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    min-width: 200px;
+}
+
+.price-info {
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+.price-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: block;
+}
+
+.price-label {
+    font-size: 0.85rem;
+    color: #666;
+    display: block;
+}
+
+.price-total {
+    font-size: 0.85rem;
+    color: #666;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+.btn-details {
+    background: #ddd;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.btn-details:hover {
+    background: #ccc;
+    color: #000;
+}
+
+.btn-save {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-save:hover {
+    background: #f5f5f5;
+}
+
+/* Vista Mapa */
+.map-view {
+    display: flex;
+    gap: 1rem;
+    height: 800px;
+}
+
+.map-listings {
+    width: 400px;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.map-header {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.map-instructions {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.btn-map-action {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-map-action:hover {
+    background: #f5f5f5;
+}
+
+.map-listing-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.map-listing-item:hover {
+    background: #f9f9f9;
+}
+
+.map-listing-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.map-listing-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.map-listing-info p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.map-listing-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.map-listing-rating .rating-badge {
+    font-size: 0.85rem;
+}
+
+.map-listing-price {
+    font-size: 0.9rem;
+}
+
+.map-container {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* ===============================
+   FOOTER (CLAVADO A home.css)
+   =============================== */
+footer {
+    background: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #333; /* Para que los span/puntos no salgan blancos */
+}
+
+/* Misma sensación visual que en home */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .forum-layout {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        position: static;
+    }
+    
+    .listing-card {
+        flex-direction: column;
+    }
+    
+    .listing-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .listing-price {
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+        align-items: stretch;
+    }
+    
+    .price-info {
+        text-align: left;
+    }
+    
+    .map-view {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .map-listings {
+        width: 100%;
+        max-height: 400px;
+    }
+    
+    .map-container {
+        height: 500px;
+    }
+}
+
+/* Header responsive IGUAL que en home */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+    }
+    
+    .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

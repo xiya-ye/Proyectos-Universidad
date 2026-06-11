@@ -1,0 +1,253 @@
+
+body {
+    background-color: #F7F7F7;
+}  
+h1 {
+    color: #FDF6E3;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 50px;
+
+}
+
+h2 {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+h3 {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h4 {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+p {
+    color: black;
+    font-size: 16px;
+    margin-top: 50px;
+}
+
+
+nav {
+    display: flex;
+    gap: 25px;
+    font-size: 20px;
+    margin-top: 60px;
+    margin-bottom: 35px;   
+}
+
+nav a {
+    text-decoration: none;
+    color: #FDF6E3;
+    font-weight: bold;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin: 25px 0;
+    text-align: right; 
+}
+
+
+.logo-img {
+    width: clamp(0px, 5vw, 100px);
+    height: clamp(0px, 5vw, 100px);
+    border-radius: 30px;
+}
+
+#idioma {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #FDF6E3;
+    cursor: pointer;
+    font-size: clamp(0px, 1.2vw, 16px);
+}
+
+header {
+    background-color: #D4A76A;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    padding: 10px;
+    width: auto;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.contenido-registro {
+    padding: 20px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.button {
+    background-color: #D4A76A;
+    color: white;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 14px;
+    max-width: 100%;
+    align-items: center; 
+    justify-content: center; 
+    font-size: clamp(0px, 1.2vw, 16px);
+    text-decoration: none;
+    display: inline-flex; 
+}
+
+input[type="text"] {
+    padding: 8px 12px;
+    border: 2px solid #D4A76A;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #FDF6E3;
+    box-sizing: border-box; 
+    font-size: clamp(0px, 1.2vw, 16px);
+}
+
+input[type="text"]:focus {
+    border-color: #BD955E;
+    outline: none;
+}
+
+input[type="email"] {
+    padding: 8px 12px;
+    border: 2px solid #BD955E;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #FDF6E3;
+    box-sizing: border-box; 
+    font-size: clamp(0px, 1.2vw, 16px);
+}
+
+input[type="email"]:focus {
+    border-color: #BD955E;
+    outline: none;
+}
+
+input[type="password"] {
+    padding: 8px 12px;
+    border: 2px solid #BD955E;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #FDF6E3;
+    box-sizing: border-box; 
+    font-size: clamp(0px, 1.2vw, 16px);
+}
+
+input[type="password"]:focus {
+    border-color: #BD955E;
+    outline: none;
+}
+
+input[type="date"] {
+    padding: 8px 12px;
+    border: 2px solid #BD955E;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #FDF6E3;
+    box-sizing: border-box; 
+    font-size: clamp(0px, 1.2vw, 16px);
+}
+
+input[type="date"]:focus {
+    border-color: #BD955E;
+    outline: none;
+}
+
+footer {
+    background-color: #D4A76A;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px;
+    width: auto;
+}
+
+.footer-newsletter {
+    text-align: right;
+    padding: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+#email-footer {
+    width: fit-content;
+}
+
+/* Breakpoint para tablet */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .contenido {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Breakpoint para móvil */
+@media (max-width: 600px) {
+  body {
+    font-size: 10px;
+  }
+
+  header {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 15px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-newsletter {
+    text-align: center;
+  }
+}

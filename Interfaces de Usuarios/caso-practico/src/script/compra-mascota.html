@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Billetes - Mascota - Mochileros Sin Fronteras</title>
+    
+    <!-- Estilos globales + flujo de compra -->
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/buy-p1.css">
+    <link rel="stylesheet" href="/style/compra-mascota.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> login o dashboard -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="buy-container">
+        
+        <div class="page-intro">
+            <h1 data-i18n="buy_main_title">COMPRA DE BILLETES</h1>
+            <p data-i18n="buy_step3_subtitle">Paso 3 de 5 · Indica si viajas con mascota y sus características.</p>
+        </div>
+
+        <!-- STEPPER -->
+        <div class="stepper-wrapper">
+            <div class="step-item completed">
+                <div class="step-circle">1</div>
+                <span class="step-label" data-i18n="buy_step1_label">Datos del viaje</span>
+            </div>
+            <div class="step-item completed">
+                <div class="step-circle">2</div>
+                <span class="step-label" data-i18n="buy_step2_label">Acompañantes</span>
+            </div>
+            <div class="step-item active">
+                <div class="step-circle">3</div>
+                <span class="step-label" data-i18n="buy_step3_label">Mascota</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">4</div>
+                <span class="step-label" data-i18n="buy_step4_label">Intolerancias</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">5</div>
+                <span class="step-label" data-i18n="buy_step5_label">Resumen y pago</span>
+            </div>
+        </div>
+
+        <div class="buy-grid">
+            
+            <!-- Columna izquierda: formulario -->
+            <section class="form-card">
+                <h2 data-i18n="buy_pet_title">Mascota</h2>
+                <p class="form-instruction" data-i18n="buy_pet_description">
+                    Indica si viajarás con mascota y, en ese caso, el tipo y el tamaño. Usamos estos datos para 
+                    asignar la zona adecuada del transporte y posibles suplementos.
+                </p>
+                
+                <form id="mascota-form" class="travel-form mascota-form">
+                    <!-- ¿Viajas con mascota? -->
+                    <div class="form-section">
+                        <span class="section-label" data-i18n="buy_pet_question_label">¿Viajas con mascota?</span>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="viajaMascota" value="si" id="radio-si">
+                                <span class="radio-label" data-i18n="buy_pet_yes_label">Sí, viajo con mascota</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="viajaMascota" value="no" id="radio-no" checked>
+                                <span class="radio-label" data-i18n="buy_pet_no_label">No, no viajo con mascota</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Detalles de la mascota -->
+                    <div class="form-section pet-details" id="pet-details" style="display: none;">
+                        <span class="section-label" data-i18n="buy_pet_data_label">Datos de la mascota</span>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <select class="input-field select-field" id="tipo-mascota">
+                                    <option value="" data-i18n="buy_pet_type_placeholder">Tipo de mascota...</option>
+                                    <option value="perro" data-i18n="buy_pet_type_dog">Perro</option>
+                                    <option value="gato" data-i18n="buy_pet_type_cat">Gato</option>
+                                    <option value="otro" data-i18n="buy_pet_type_other">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="input-field select-field" id="tamano-mascota">
+                                    <option value="" data-i18n="buy_pet_size_placeholder">Tamaño...</option>
+                                    <option value="pequeno" data-i18n="buy_pet_size_small">Pequeño (hasta 5kg)</option>
+                                    <option value="mediano" data-i18n="buy_pet_size_medium">Mediano (5-15kg)</option>
+                                    <option value="grande" data-i18n="buy_pet_size_large">Grande (más de 15kg)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea 
+                                class="input-field textarea-field" 
+                                id="observaciones-mascota" 
+                                placeholder="Observaciones (opcional)..." 
+                                rows="4"
+                                data-i18n-placeholder="buy_pet_observations_placeholder"
+                            ></textarea>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Columna derecha: resumen -->
+            <aside class="summary-card">
+                <h3>Resumen provisional</h3>
+                <ul class="summary-list">
+                    <li><span data-i18n="buy_summary_origin">Origen:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_destination">Destino:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_dates">Fechas:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_people">Personas:</span> <strong>—</strong></li>
+                    <li style="margin-top: 10px; padding-top:10px; border-top: 1px dashed #e2e8f0">
+                        <span data-i18n="buy_summary_companions_added">Acompañantes añadidos:</span> <strong>0</strong>
+                    </li>
+                    <li>
+                        <span data-i18n="buy_summary_pet">Mascota:</span> <strong id="summary-mascota">No</strong>
+                    </li>
+                </ul>
+                
+                <div class="total-row">
+                    <span data-i18n="buy_summary_total_estimated">Total estimado:</span>
+                    <span class="total-price">—</span>
+                </div>
+                
+                <p class="summary-note" data-i18n="buy_summary_note_generic">
+                    El importe final se calculará al añadir acompañantes, mascota e intolerancias.
+                </p>
+            </aside>
+
+        </div>
+
+        <!-- Botones inferiores, igual que en los otros pasos -->
+        <div class="bottom-actions">
+            <a href="buy-acomp.html" id="btn-volver-acomp" class="btn-action secondary" data-i18n="buy_btn_back_to_companions">
+                VOLVER A ACOMPAÑANTES
+            </a>
+            <a href="compra-intolerancias.html" id="btn-continuar-intolerancias" class="btn-action primary" data-i18n="buy_btn_continue_intolerances">
+                CONTINUAR CON INTOLERANCIAS
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/compra-mascota.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+</body>
+</html>

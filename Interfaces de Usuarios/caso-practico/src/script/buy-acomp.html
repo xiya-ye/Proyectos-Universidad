@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paso 2: Acompañantes - Mochileros Sin Fronteras</title>
+        
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/buy-p1.css">
+    <link rel="stylesheet" href="/style/buy-acomp.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login / dashboard -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="buy-container">
+        
+        <div class="page-intro">
+            <h1 data-i18n="buy_main_title">COMPRA DE BILLETES</h1>
+            <p data-i18n="buy_step2_subtitle">Paso 2 de 5 · Añade las personas que viajarán contigo.</p>
+        </div>
+
+        <div class="stepper-wrapper">
+            <div class="step-item completed">
+                <div class="step-circle">1</div>
+                <span class="step-label" data-i18n="buy_step1_label">Datos del viaje</span>
+            </div>
+            <div class="step-item active">
+                <div class="step-circle">2</div>
+                <span class="step-label" data-i18n="buy_step2_label">Acompañantes</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">3</div>
+                <span class="step-label" data-i18n="buy_step3_label">Mascota</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">4</div>
+                <span class="step-label" data-i18n="buy_step4_label">Intolerancias</span>
+            </div>
+            <div class="step-item">
+                <div class="step-circle">5</div>
+                <span class="step-label" data-i18n="buy_step5_label">Resumen y pago</span>
+            </div>
+        </div>
+
+        <div class="buy-grid">
+            
+            <section class="form-card">
+                <h2 data-i18n="buy_companions_title">Personas acompañantes</h2>
+                <p class="form-instruction" data-i18n="buy_companions_instruction">
+                    Añade nombre y correo de cada acompañante. Usaremos estos datos para enviarles la confirmación.
+                </p>
+                
+                <!-- Contenedor que JS rellenará dinámicamente -->
+                <div id="companions-list"></div>
+
+                <button id="btn-add-companion" class="btn-add-ghost" type="button" data-i18n="buy_btn_add_companion">
+                    + AÑADIR ACOMPAÑANTE
+                </button>
+
+            </section>
+
+            <aside class="summary-card">
+                <h3 data-i18n="buy_summary_provisional_title">Resumen provisional</h3>
+                <ul class="summary-list">
+                    <li><span data-i18n="buy_summary_origin">Origen:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_destination">Destino:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_dates">Fechas:</span> <strong>—</strong></li>
+                    <li><span data-i18n="buy_summary_people">Personas:</span> <strong>—</strong></li>
+                    <li style="margin-top: 10px; padding-top:10px; border-top: 1px dashed #e2e8f0">
+                        <span data-i18n="buy_summary_companions_added">Acompañantes añadidos:</span> <strong>0</strong>
+                    </li>
+                </ul>
+                
+                <div class="total-row">
+                    <span data-i18n="buy_summary_total_estimated">Total estimado:</span>
+                    <span class="total-price">—</span>
+                </div>
+                
+                <p class="summary-note" data-i18n="buy_summary_note_generic">
+                    El importe final se calculará al añadir acompañantes, mascota e intolerancias.
+                </p>
+            </aside>
+        </div>
+
+        <div class="bottom-actions">
+            <a href="buy-p1.html" class="btn-action secondary" data-i18n="buy_btn_back_to_trip">
+                VOLVER A DATOS DEL VIAJE
+            </a>
+            
+            <a href="compra-mascota.html" id="btn-continuar-pets" class="btn-action primary" data-i18n="buy_btn_continue_pet">
+                CONTINUAR CON MASCOTAS
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+    
+    <script src="/js/buy-acomp.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+
+</body>
+</html>

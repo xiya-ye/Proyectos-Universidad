@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro de la Comunidad - Mochileros Sin Fronteras</title>
+
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/foro-comunidad.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="forum-header">
+        <div class="forum-title">
+            <h1 data-i18n="forum_page_title">Foro de la comunidad</h1>
+            <p data-i18n="forum_subtitle">Conecta con otros viajeros, haz preguntas y comparte experiencias.</p>
+        </div>
+        <button class="btn-new-thread" data-i18n="btn_new_thread">Crear nuevo tema</button>
+    </div>
+
+    <div class="forum-search-bar">
+        <input type="text" placeholder="Buscar en el foro..." class="search-input" data-i18n-placeholder="forum_search_placeholder">
+        <select class="category-select">
+            <option data-i18n="forum_cat_placeholder">Categoría...</option>
+            <option data-i18n-placeholder="forum-egypt">Egipto</option>
+            <option data-i18n-placeholder="forum_europe">Europa</option>
+            <option data-i18n-placeholder="forum_asia">Asia</option>
+            <option data-i18n-placeholder="forum_america">América</option>
+        </select>
+        <select class="sort-select">
+            <option data-i18n="forum_sort_placeholder">Ordenar por...</option>
+            <option data-i18n="sort_recent">Más recientes</option>
+            <option data-i18n="sort_oldest">Más antiguos</option>
+            <option data-i18n="sort_replies">Más respuestas</option>
+            <option data-i18n="sort_views">Más vistos</option>
+        </select>
+        <label class="checkbox-filter">
+            <input type="checkbox"> 
+            <span data-i18n="label_only_mine">Solo mis hilos</span>
+        </label>
+    </div>
+
+    <div class="forum-tags">
+        <button class="tag-btn active" data-i18n="filter_all">Todos</button>
+        <button class="tag-btn" data-i18n="filter_egypt">Egipto</button>
+        <button class="tag-btn" data-i18n="filter_europe">Europa</button>
+        <button class="tag-btn" data-i18n="filter_backpack">Mochila ligera</button>
+        <button class="tag-btn" data-i18n="filter_solo">Viajar solo</button>
+        <button class="tag-btn" data-i18n="filter_family">Familias</button>
+        <button class="tag-btn" data-i18n="filter_budget">Presupuesto bajo</button>
+    </div>
+
+    <div class="forum-layout">
+        <main class="forum-content">
+            <div class="forum-table">
+                <div class="table-header">
+                    <div class="col-tema" data-i18n="col_topic">Tema</div>
+                    <div class="col-categoria" data-i18n="col_category">Categoría</div>
+                    <div class="col-respuestas" data-i18n="col_replies">Respuestas</div>
+                    <div class="col-actividad" data-i18n="col_activity">Actividad</div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <span class="page-dots">...</span>
+                <button class="btn-page">7</button>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 data-i18n="sidebar_popular_threads">Temas populares</h3>
+                
+                <div class="popular-thread">
+                    <h4 data-i18n="pop_1">Mejor tarjeta SIM para viajar por Asia</h4>
+                    <p data-i18n="pop_meta_1">45 respuestas · hace 2 h</p>
+                </div>
+
+                <div class="popular-thread">
+                    <h4 data-i18n="pop_2">¿Es seguro viajar a Marruecos sola?</h4>
+                    <p data-i18n="pop_meta_2">120 respuestas · hace 5 h</p>
+                </div>
+
+                <div class="popular-thread">
+                    <h4 data-i18n="pop_3">Ruta de 15 días por Japón: Itinerario</h4>
+                    <p data-i18n="pop_meta_3">89 respuestas · hace 1 día</p>
+                </div>
+
+                <div class="popular-thread">
+                    <h4 data-i18n="pop_4">Hostales baratos en Londres (zona 1)</h4>
+                    <p data-i18n="pop_meta_4">34 respuestas · hace 3 días</p>
+                </div>
+
+                <div class="popular-thread">
+                    <h4 data-i18n="pop_5">Vacunas necesarias para el Amazonas</h4>
+                    <p data-i18n="pop_meta_5">21 respuestas · hace 1 semana</p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 data-i18n="sidebar_tags">Etiquetas destacadas</h3>
+                <div class="tag-cloud">
+                    <span class="cloud-tag" data-i18n="tag_egypt">Egipto</span>
+                    <span class="cloud-tag" data-i18n="tag_euro_low">Europa low cost</span>
+                    <span class="cloud-tag" data-i18n="tag_couple">Viajar en pareja</span>
+                    <span class="cloud-tag" data-i18n="tag_pet">Viajar con mascota</span>
+                    <span class="cloud-tag" data-i18n="tag_long">Larga duración</span>
+                    <span class="cloud-tag" data-i18n="tag_students">Estudiantes</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section forum-rules">
+                <h3 data-i18n="sidebar_rules">Normas del foro</h3>
+                <ul>
+                    <li data-i18n="rule_1">Respeta a otros usuarios.</li>
+                    <li data-i18n="rule_2">No publiques spam ni autopromoción agresiva.</li>
+                    <li data-i18n="rule_3">Usa títulos claros para tus hilos.</li>
+                </ul>
+                <a href="#" class="link-rules" data-i18n="link_read_rules">Leer normas completas</a>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <div id="newThreadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="margin-bottom: 1rem;" data-i18n="modal_thread_title">Crear nuevo tema</h2>
+            
+            <form id="newThreadForm">
+                <div class="form-group">
+                    <label data-i18n="label:thread_title">Título del tema</label>
+                    <input type="text" id="newTitle" placeholder="Ej: Consejos para viajar a..." required class="modal-input" data-i18n-placeholder="ph_thread_title">
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="label_thread_cat">Categoría</label>
+                    <select id="newCategory" class="modal-input">
+                        <option value="General">General</option>
+                        <option value="Egipto">Egipto</option>
+                        <option value="Europa">Europa</option>
+                        <option value="Asia">Asia</option>
+                        <option value="América">América</option>
+                        <option value="Equipaje">Equipaje</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="label_thread_msg">Tu mensaje</label>
+                    <textarea id="newContent" rows="5" required class="modal-input"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-thread" data-i18n="btn_publish_thread">Publicar Tema</button>
+            </form>
+        </div>
+    </div>
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/bases-datos/info-foro.js"></script>
+    <script src="/js/foro-comunidad.js"></script>
+</body>
+</html>

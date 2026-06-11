@@ -1,0 +1,281 @@
+/* ===============================
+   BASE IGUAL QUE home.css
+   =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fafafa;
+}
+
+/* Layout genérico como en home */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ===============================
+   HEADER (CLAVADO A home.css)
+   =============================== */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Forzamos misma fuente en todo el header */
+.header,
+.header * {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #333;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Selector de idioma como en home */
+.language-selector {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Aseguramos mismo color base en los spans (ES | EN | IT) */
+.language-selector span {
+    color: #666;
+}
+
+.language-selector .active {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Enlace "Mi cuenta" igual que en home */
+.user-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.user-link:hover {
+    color: #333;
+}
+
+/* Icono accesibilidad ♿ igual que en home */
+.a11y-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.a11y-link:hover {
+    color: #333;
+    border-color: #ccc;
+}
+
+/* Botón COMPRAR igual que en home */
+.btn-comprar {
+    background-color: #d0d0d0;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-decoration: none;  
+    display: inline-block;
+    color: #333;
+    text-align: center;
+}
+
+.btn-comprar:hover {
+    background-color: #c0c0c0;
+}
+
+/* ===============================
+   ESTILOS ESPECÍFICOS DEL FLUJO DE COMPRA
+   =============================== */
+
+/* Paso Completado (Círculo Azul - Paso 1) */
+.step-item.completed .step-circle {
+    background-color: #6daef4; /* Azul clarito similar a la imagen */
+    color: white;
+}
+
+.step-item.completed .step-label {
+    color: #0f172a; /* Texto negro */
+}
+
+/* Tarjeta de Acompañante (Caja Gris) */
+.companion-card {
+    background-color: #f8fafc; /* Fondo gris muy suave */
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Cabecera de la tarjeta (Título + Botón Eliminar) */
+.companion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.companion-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.btn-delete {
+    background-color: #d1d5db; /* Gris botón eliminar */
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #9ca3af; /* Gris más oscuro */
+}
+
+/* Botón Añadir Acompañante (Gris grande) */
+.btn-add-ghost {
+    background-color: #dbe0e6; /* Gris similar a los botones inferiores */
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.btn-add-ghost:hover {
+    background-color: #cbd5e1;
+}
+
+/* ===============================
+   FOOTER (CLAVADO A home.css)
+   =============================== */
+footer,
+.footer {
+    background: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: #333;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: #666;
+}
+
+/* Ajuste responsive para que los inputs no se vean raros en el grid */
+@media (max-width: 768px) {
+    .form-row > div {
+        display: none; /* Ocultar el div vacío en móvil */
+    }
+
+    /* Header responsive igual que home */
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+    }
+    
+    .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

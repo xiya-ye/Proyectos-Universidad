@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guías y Artículos - Mochileros Sin Fronteras</title>
+    <link rel="stylesheet" href="/style/main.css"> 
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/guides-list.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container guias-container">
+        <div class="page-header-guias">
+            <div class="title-row">
+                <div>
+                    <h1 data-i18n="guides_page_title">Guías y artículos</h1>
+                    <p data-i18n="guides_page_subtitle">Inspírate con experiencias reales y encuentra información práctica sobre tus próximos destinos.</p>
+                </div>
+                <button class="btn-suscribir" data-i18n="btn_subscribe">Suscribirme a novedades</button> 
+            </div>
+
+            <div class="filters-dropdown-bar">
+                <input type="text" placeholder="Destino, palabra clave..." class="filter-input-search" data-i18n-placeholder="filter_placeholder_search">
+                <select class="filter-select" data-i18n="filter_all_destinations"><option>Todos los destinos...</option></select>
+                <select class="filter-select"><option>Tipo de contenido...</option></select>
+                <select class="filter-select"><option>Duración...</option></select>
+            </div>
+
+            <div class="search-tags filters-tags-bar">
+                <span class="tag active" data-i18n="tag_all">Todos</span>
+                <span class="tag" data-i18n="tag_cultural_trips">Viajes culturales</span>
+                <span class="tag" data-i18n="tag_low_budget">Presupuesto bajo</span>
+                <span class="tag" data-i18n="tag_adventure">Aventura</span>
+                <span class="tag" data-i18n="tag_climate">Clima y mejor época</span>
+                <span class="tag" data-i18n="tag_packing">Qué llevar</span>
+            </div>
+
+            <div class="results-count-row">
+                <span data-i18n="txt_results">16 resultados<br><small style="color:#999">Mostrando guías para 'Egipto' · Tipo: Guía práctica</small></span>
+                <div class="sort-wrapper">
+                    <span data-i18n="sort_by_label">Ordenar por</span>
+                    <select class="sort-dropdown"><option data-i18n="sort_newest">Más recientes</option></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="guides-list-container">
+
+        </div>
+
+        <div class="pagination">
+        </div>
+
+        <section class="bottom-extras-grid">
+            
+            <div class="extra-card collections-card">
+                <h3 data-i18n="widget_collections">Colecciones destacadas</h3>
+                <ul class="collections-list"></ul>
+            </div>
+
+            <div class="extra-card popular-card">
+                <h3 data-i18n="widget_popular">Guías populares</h3>
+                <div class="popular-items-list">
+                    <div class="pop-item"></div>
+                </div>
+            </div>
+
+            <div class="extra-card promos-card">
+                <h3 data-i18n="widget_promos">Descuentos y promos</h3>
+                <ul class="promos-list">
+                    <li>
+                        <strong>-10%</strong> <span data-i18n="promo_1_text">en entradas al Museo Egipcio con el código</span> <span>EGIPTO10</span>
+                    </li>
+                    <li>
+                        <strong>2x1</strong> <span data-i18n="promo_2_text">en free tour por Lisboa con la app 'X'</span>
+                    </li>
+                    <li>
+                        <span data-i18n="promo_3_text">Descuento en seguro de viaje para mochileros</span>
+                    </li>
+                </ul>
+                <a href="#" class="link-ver-todas" data-i18n="link_see_offers">Ver todas las ofertas</a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <div id="subscribeModal" class="modal">
+        <div class="modal-content subscription-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3 data-i18n="modal_sub_title">🌍 ¡Únete a la aventura!</h3>
+                <p data-i18n="modal_sub_text">Recibe guías de viaje, trucos para ahorrar y descuentos exclusivos cada semana en tu correo.</p>
+            </div>
+            <form id="subscribeForm">
+                <input type="email" id="emailInput" placeholder="Tu correo electrónico" required class="modal-input" data-i18n-placeholder="modal_sub_placeholder">
+                <button type="submit" class="btn-modal-submit" data-i18n="modal_sub_btn">¡Quiero suscribirme!</button>
+            </form>
+            <p class="modal-footer-text" data-i18n="modal_sub_footer">Sin spam. Puedes darte de baja cuando quieras.</p>
+        </div>
+    </div>
+
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/bases-datos/info-guias.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/guides-list.js"></script>
+</body>
+</html>

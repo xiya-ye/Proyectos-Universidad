@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesibilidad y Privacidad - Mochileros Sin Fronteras</title>
+    
+    <!-- Fuente opcional para el contenido de la página -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/a11y-settings.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="a11y-container">
+        
+        <div class="breadcrumbs">
+            <a href="home.html" data-i18n="breadcrumb_home">Inicio</a> > 
+            <a href="account-dashboard.html" data-i18n="nav_account">Mi cuenta</a> > 
+            <span data-i18n="breadcrumb_a11y">Accesibilidad y privacidad</span>
+        </div>
+
+        <div class="page-header-row">
+            <div class="title-block">
+                <h1 data-i18n="a11y_title">Accesibilidad y privacidad</h1>
+                <p data-i18n="a11y_subtitle">
+                    Ajusta el tamaño de texto, el contraste y cómo guardamos tus preferencias para que la experiencia se adapte a ti.
+                </p>
+            </div>
+            <div class="success-pill" data-i18n="a11y_status_saved">
+                Preferencias guardadas en este dispositivo
+            </div>
+        </div>
+
+        <div class="info-alert">
+            <span class="info-icon">i</span>
+            <p data-i18n="a11y_info_text">
+                Estos ajustes solo afectan a cómo ves esta web en este navegador. Puedes cambiarlos en cualquier momento.
+            </p>
+        </div>
+
+        <div class="settings-grid">
+            
+            <div class="settings-form-col">
+                
+                <section class="setting-card">
+                    <div class="card-title-row">
+                        <h3 data-i18n="a11y_text_size_title">Tamaño de texto</h3>
+                        <span class="status-label" data-i18n="a11y_text_size_status">Actual: Grande</span>
+                    </div>
+                    <p class="card-desc" data-i18n="a11y_text_size_desc">
+                        Aumenta el tamaño del texto para facilitar la lectura, especialmente si tienes presbicia o vista cansada.
+                    </p>
+                    
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="textSize" value="small">
+                            <span class="radio-label">
+                                <span data-i18n="a11y_size_small">Pequeño</span>
+                                <span class="sub-text" data-i18n="a11y_size_small_sub">Caben más elementos en pantalla.</span>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="textSize" value="normal">
+                            <span class="radio-label" data-i18n="a11y_size_normal">
+                                Normal (recomendado)
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="textSize" value="large" checked>
+                            <span class="radio-label" data-i18n="a11y_size_large">
+                                Grande
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="textSize" value="xl">
+                            <span class="radio-label" data-i18n="a11y_size_xl">
+                                Muy grande
+                            </span>
+                        </label>
+                    </div>
+                    <p class="note-small" data-i18n="a11y_text_size_note">
+                        Algunos elementos de la interfaz pueden ocupar más espacio cuando se selecciona un tamaño grande.
+                    </p>
+                </section>
+
+                <section class="setting-card">
+                    <div class="card-title-row">
+                        <h3 data-i18n="a11y_contrast_title">Contraste de la interfaz</h3>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-contrast">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <p class="card-desc" data-i18n="a11y_contrast_desc">
+                        El modo de alto contraste mejora la legibilidad de texto y botones.
+                    </p>
+                    <div class="info-list">
+                        <p><strong data-i18n="a11y_contrast_normal">Normal:</strong> <span data-i18n="a11y_contrast_normal_desc">colores estándar del sitio.</span></p>
+                        <p><strong data-i18n="a11y_contrast_high">Alto contraste:</strong><span data-i18n="a11y_contrast_high_desc">textos más oscuros y fondos más claros.</span></p>
+                    </div>
+                </section>
+
+                <section class="setting-card">
+                    <h3 data-i18n="a11y_font_title">Tipografía</h3>
+                    <p class="card-desc" data-i18n="a11y_font_desc">
+                        Elige una tipografía estándar o una fuente más amigable para personas con dislexia.
+                    </p>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="fontType" value="standard" checked>
+                            <span class="radio-label" data-i18n="a11y_font_standard">
+                                Estándar del sitio
+                                <span class="sub-text" data-i18n="a11y_font_standard_sub">Equilibrio entre lectura y espacio.</span>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="fontType" value="dyslexic">
+                            <span class="radio-label" data-i18n="a11y_font_dyslexic">
+                                Fuente amigable (dislexia)
+                                <span class="sub-text" data-i18n="a11y_font_dyslexic_sub">Formas de letras más diferenciadas.</span>
+                            </span>
+                        </label>
+                    </div>
+                    <p class="note-small" style="margin-top: 1rem;" >
+                        <strong data-i18n="a11y_font_example">Ejemplo rápido de cómo se ve esta tipografía.</strong>
+                    </p>
+                </section>
+
+                <section class="setting-card">
+                    <h3 data-i18n="a11y_motion_title">Animaciones y enfoque</h3>
+                    <p class="card-desc" data-i18n="a11y_motion_desc">
+                        Reduce movimientos innecesarios y asegúrate de que el enfoque del teclado sea visible.
+                    </p>
+                    
+                    <div class="control-row">
+                        <div>
+                            <strong data-i18n="a11y_reduce_motion_title">Reducir animaciones</strong>
+                            <p class="sub-text" data-i18n="a11y_reduce_motion_desc">
+                                Evita transiciones bruscas o parallax.
+                            </p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-animations">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="control-row">
+                        <div>
+                            <strong data-i18n="a11y_focus_title">Resaltar elementos enfocados</strong>
+                            <p class="sub-text" data-i18n="a11y_focus_desc">
+                                Aumenta el contorno de botones y enlaces.
+                            </p>
+                        </div>
+                        <div class="select-wrapper-small">
+                            <select aria-label="Intensidad del enfoque">
+                                <option data-i18n="highlight_normal">Normal</option>
+                                <option data-i18n="highlight_medium">Medio</option>
+                                <option data-i18n="highlight_strong">Fuerte</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="setting-card">
+                    <h3 data-i18n="a11y_privacy_title">Privacidad y guardado de preferencias</h3>
+                    <p class="card-desc" data-i18n="a11y_privacy_desc">
+                        Dec
+                        ide qué información guardamos en este navegador.
+                    </p>
+                    
+                    <div class="control-row">
+                        <div>
+                            <strong data-i18n="a11y_privacy_accessibility_title">Recordar ajustes de accesibilidad</strong>
+                            <span class="sub-text" data-i18n="a11y_privacy_accessibility_desc">
+                                Guardamos tamaño de texto, contraste, tipografía...
+                            </span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="control-row">
+                        <div>
+                            <strong data-i18n="a11y_privacy_reco_title">Recomendaciones personalizadas</strong>
+                            <span class="sub-text" data-i18n="a11y_privacy_reco_desc">
+                                Usamos tu actividad para sugerirte destinos.
+                            </span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="control-row">
+                        <div>
+                            <strong data-i18n="a11y_privacy_analytics_title">Analítica básica anónima</strong>
+                            <span class="sub-text" data-i18n="a11y_privacy_analytics_desc">
+                                Nos ayuda a mejorar el sitio sin identificarte.
+                            </span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    
+                    <a href="#" class="link-blue-small" data-i18n="a11y_privacy_cookies">
+                        Configurar cookies en detalle
+                    </a>
+                </section>
+
+                <div class="bottom-buttons">
+                    <button class="btn-reset" type="button" data-i18n="a11y_reset">
+                        Restablecer ajustes por defecto
+                    </button>
+                    <button class="btn-save" type="button" data-i18n="a11y_save">
+                        Guardar cambios
+                    </button>
+                </div>
+
+            </div>
+
+            <aside class="preview-sidebar">
+                
+                <div class="preview-header-box">
+                    <h4 data-i18n="a11y_preview_title">Vista previa</h4>
+                    <p data-i18n="a11y_preview_desc">
+                        Así podría verse una página típica con los ajustes seleccionados de tamaño de texto, contraste y tipografía.
+                    </p>
+                </div>
+
+                <div class="preview-content-card size-large">
+                    <div class="mini-breadcrumbs" data-i18n="a11y_preview_breadcrumbs">Inicio · Alojamiento · Foro · Guías</div>
+                    
+                    <h2 class="mini-title" data-i18n="a11y_preview_card_title">Explora y reserva tu próximo viaje</h2>
+                    
+                    <p class="mini-text" data-i18n="a11y_preview_card_text_1">
+                        Este bloque te muestra cómo se verán los textos principales con el tamaño y tipografía que has elegido.
+                    </p>
+                    
+                    <div class="mini-buttons-row">
+                        <button class="mini-btn primary" data-i18n="a11y_preview_btn_primary">BOTÓN PRINCIPAL</button>
+                        <button class="mini-btn secondary" data-i18n="a11y_preview_btn_secondary">Botón secundario</button>
+                    </div>
+
+                    <p class="mini-text bold" data-i18n="a11y_preview_card_text_2">
+                        Este es un texto de ejemplo de varios renglones. Si has aumentado el tamaño de la fuente o activado el alto contraste, debería resultar más fácil de leer.
+                    </p>
+
+                    <ul class="mini-list">
+                        <li data-i18n="a11y_preview_list_item">Prueba</li>
+                        <li data-i18n="a11y_preview_list_item">Prueba</li>
+                        <li data-i18n="a11y_preview_list_item">Prueba</li>
+                    </ul>
+
+                    <a href="#" class="mini-link" data-i18n="a11y_preview_link">Este es un enlace de ejemplo</a>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/settings.js"></script>
+</body>
+</html>

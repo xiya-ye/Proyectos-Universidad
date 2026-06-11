@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - Mochileros Sin Fronteras</title>
+
+    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/account-dashboard.css">
+    <link rel="stylesheet" href="/style/accesibilidad-global.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <a href="home.html">Mochileros Sin Fronteras</a>
+                </h1>
+                <nav class="nav">
+                    <a href="alojamiento.html" class="nav-link" data-i18n="nav_accommodation">Alojamiento</a>
+                    <a href="foro-comunidad.html" class="nav-link" data-i18n="nav_forum">Foro</a>
+                    <a href="guides-list.html" class="nav-link" data-i18n="nav_guides">Guías</a>
+                    <a href="otros-rincones.html" class="nav-link" data-i18n="nav_corners">Otros Rincones</a>
+                </nav>
+                <div class="header-right">
+                    <!-- Acceso directo a accesibilidad -->
+                    <a href="a11y-settings.html"
+                       class="a11y-link"
+                       data-i18n="nav_a11y"
+                       aria-label="Ajustes de accesibilidad">♿</a>
+
+                    <div class="language-selector">
+                        <span class="lang-option active" data-lang="es">ES</span> | 
+                        <span class="lang-option" data-lang="en">EN</span> | 
+                        <span class="lang-option" data-lang="it">IT</span>
+                    </div>
+
+                    <!-- Mi cuenta -> pantalla de login -->
+                    <a href="login.html" class="user-link" data-i18n="nav_account">Mi cuenta</a>
+
+                    <a href="buy-p1.html" class="btn-comprar" data-i18n="nav_buy">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="account-container">
+        
+        <div class="breadcrumbs">
+            <a href="home.html" data-i18n="breadcrumb_home">Inicio</a> > <span data-i18n="nav_account">Mi cuenta</span>
+        </div>
+
+        <div class="account-header-row">
+            <div class="account-title-block">
+                <h1 data-i18n="dashboard_title">Mi cuenta</h1>
+                <p data-i18n="dashboard_subtitle">Gestiona tus reservas, tus favoritos y tu actividad en el foro desde un solo sitio.</p>
+            </div>
+            
+            <div class="user-mini-card">
+                <div class="avatar-circle">J</div>
+                <div class="user-mini-info">
+                    <strong>Usuario</strong>
+                    <span>Miembro reciente</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="account-tabs">
+            <a href="#" class="tab-link active" data-i18n="tab_summary">Resumen</a>
+            <a href="#" class="tab-link" data-i18n="tab_trips">Mis viajes</a>
+            <a href="#" class="tab-link" data-i18n="tab_favorites">Favoritos</a>
+            <a href="#" class="tab-link" data-i18n="tab_forum">Foro</a>
+            <a href="#" class="tab-link" data-i18n="tab_settings">Ajustes</a>
+        </nav>
+
+        <div class="dashboard-grid">
+            
+            <div class="dashboard-main-col">
+                
+                <section class="dash-card">
+                    <div class="card-header">
+                        <h3 data-i18n="card_upcoming_trips">Próximos viajes</h3>
+                        <a href="#" class="link-small" data-i18n="link_view_all">Ver todos</a>
+                    </div>
+                    <p class="section-subtitle" data-i18n="subtitle_upcoming">Aquí verás las reservas confirmadas y en curso.</p>
+
+                    <div class="trips-list">
+                        <article class="trip-item">
+                            <img src="/images/crucero-nilo.jpg" alt="Crucero" class="trip-thumb">
+                            <div class="trip-content">
+                                <h4 data-i18n="trip_nile_title">Crucero cultural por el Nilo</h4>
+                                <span class="trip-dates" data-i18n="trip_nile_dates">13–20 diciembre 2025 · 2 personas</span>
+                                <span class="trip-id" data-i18n="trip_nile_details">Incluye billetes y alojamiento · Reserva nº 1245</span>
+                            </div>
+                            <div class="trip-actions">
+                                <span class="status-badge confirmed" data-i18n="status_comfirmed">Confirmado</span>
+                                <button class="btn-detail" data-i18n="btn_view_detail">Ver detalle</button>
+                            </div>
+                        </article>
+
+                        <article class="trip-item">
+                            <img src="/images/crucero-nilo.jpg" alt="Crucero" class="trip-thumb">
+                            <div class="trip-content">
+                                <h4 data-i18n="trip_nile_title">Crucero cultural por el Nilo</h4>
+                                <span class="trip-dates" data-i18n="trip_nile_dates">13–20 diciembre 2025 · 2 personas</span>
+                                <span class="trip-id" data-i18n="trip_nile_details">Incluye billetes y alojamiento · Reserva nº 1245</span>
+                            </div>
+                            <div class="trip-actions">
+                                <span class="status-badge confirmed" data-i18n="status_comfirmed">Confirmado</span>
+                                <button class="btn-detail" data-i18n="btn_view_detail">Ver detalle</button>
+                            </div>
+                        </article>
+
+                        <article class="trip-item">
+                            <img src="/images/crucero-nilo.jpg" alt="Crucero" class="trip-thumb">
+                            <div class="trip-content">
+                                <h4 data-i18n="trip_nile_title">Crucero cultural por el Nilo</h4>
+                                <span class="trip-dates" data-i18n="trip_nile_dates">13–20 diciembre 2025 · 2 personas</span>
+                                <span class="trip-id" data-i18n="trip_nile_details">Incluye billetes y alojamiento · Reserva nº 1245</span>
+                            </div>
+                            <div class="trip-actions">
+                                <span class="status-badge confirmed" data-i18n="status_comfirmed">Confirmado</span>
+                                <button class="btn-detail" data-i18n="btn_view_detail">Ver detalle</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="dash-card">
+                    <div class="card-header">
+                        <h3 data-i18n="card_past_trips">Viajes anteriores</h3>
+                        <a href="#" class="link-small" data-i18n="link_view_history">Ver todo el historial</a>
+                    </div>
+                    <div class="past-trip-placeholder">
+                        <span>Destino + Fechas</span>
+                        <a href="#" class="link-small">Ver detalles / dejar reseña</a>
+                    </div>
+                </section>
+
+                <section class="dash-card">
+                    <div class="card-header no-border">
+                        <h3 data-i18n="card_favorites">Favoritos</h3>
+                        <div class="fav-toggles">
+                            <button class="toggle-btn active" data-i18n="toggle_accomm">Alojamientos</button>
+                            <button class="toggle-btn" data-i18n="toggle_guides">Guías</button>
+                        </div>
+                    </div>
+                    
+                    <div class="favorites-list">
+                        <article class="fav-item">
+                            <img src="/images/crucero-nilo.jpg" alt="Riad" class="fav-thumb">
+                            <div class="fav-content">
+                                <h4 data-i18n="fav_riad_title">Riad Al Qamar</h4>
+                                <span data-i18n="fav_riad_meta">El Cairo · 4,7 ★ · 72 €/noche</span>
+                            </div>
+                            <div class="fav-actions">
+                                <button class="btn-detail" data-i18n="btn_view_short">Ver</button>
+                                <span class="heart-icon">♥</span>
+                            </div>
+                        </article>
+                        
+                        <article class="fav-item">
+                            <img src="/images/crucero-nilo.jpg" alt="Riad" class="fav-thumb">
+                            <div class="fav-content">
+                                <h4 data-i18n="fav_riad_title">Riad Al Qamar</h4>
+                                <span data-i18n="fav_riad_meta">El Cairo · 4,7 ★ · 72 €/noche</span>
+                            </div>
+                            <div class="fav-actions">
+                                <button class="btn-detail" data-i18n="btn_view_short">Ver</button>
+                                <span class="heart-icon">♥</span>
+                            </div>
+                        </article>
+
+                          <article class="fav-item">
+                            <img src="/images/crucero-nilo.jpg" alt="Riad" class="fav-thumb">
+                            <div class="fav-content">
+                                <h4 data-i18n="fav_riad_title">Riad Al Qamar</h4>
+                                <span data-i18n="fav_riad_meta">El Cairo · 4,7 ★ · 72 €/noche</span>
+                            </div>
+                            <div class="fav-actions">
+                                <button class="btn-detail" data-i18n="btn_view_short">Ver</button>
+                                <span class="heart-icon">♥</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+
+            <aside class="dashboard-side-col">
+                
+                <section class="dash-card profile-card">
+                    <div class="card-header">
+                        <h3 data-i18n="card_profile">Perfil</h3>
+                        <a href="#" class="link-small" data-i18n="link_edit_profile">Editar perfil</a>
+                    </div>
+                    <div class="profile-main">
+                        <div class="avatar-circle big">Inicial</div>
+                        <div class="profile-text">
+                            <h4>Usuario</h4>
+                            <span>Correo</span>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-box">
+                            <strong>3</strong>
+                            <span data-i18n="stat_trips">Viajes</span>
+                        </div>
+                        <div class="stat-box">
+                            <strong>7</strong>
+                            <span data-i18n="stat_favorites">Favoritos</span>
+                        </div>
+                        <div class="stat-box">
+                            <strong>15</strong>
+                            <span data-i18n="stat_messages">Mensajes foro</span>
+                        </div>
+                    </div>
+                    <p class="legal-note" data-i18n="profile_privacy_note">Tus datos personales solo se usan para gestionar tus reservas y participación en la comunidad.</p>
+                    <button id="btn-logout" class="btn-detail full-width" style="margin-top: 1rem; color: #d32f2f; background: #fee2e2;" data-i18n="btn_logout">
+                        Cerrar sesión
+                    </button>
+                </section>
+
+                <section class="dash-card">
+                    <div class="card-header">
+                        <h3 data-i18n="card_forum_activity">Actividad en el foro</h3>
+                        <a href="#" class="link-small" data-i18n="link_view_all">Ver todo</a>
+                    </div>
+                    <ul class="forum-activity-list">
+                        <li>
+                            <a href="#" class="forum-link">Busco compañer@s para Lisboa en marzo</a>
+                            <span>Hilo creado · hace 2 días · 8 respuestas</span>
+                        </li>
+                        <li>
+                            <a href="#" class="forum-link">Busco compañer@s para Lisboa en marzo</a>
+                            <span>Hilo creado · hace 2 días · 8 respuestas</span>
+                        </li>
+                        <li>
+                            <a href="#" class="forum-link">Busco compañer@s para Lisboa en marzo</a>
+                            <span>Hilo creado · hace 2 días · 8 respuestas</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="dash-card">
+                    <div class="card-header">
+                        <h3 data-i18n="card_saved_prefs">Preferencias guardadas</h3>
+                    </div>
+                    <ul class="prefs-list">
+                        <li><strong>Tamaño de texto:</strong> grande</li>
+                        <li><strong>Modo de contraste:</strong> alto</li>
+                        <li><strong>Idioma preferido:</strong> ES</li>
+                        <li><strong>Mostrar siempre destinos culturales destacados</strong></li>
+                    </ul>
+                    <p class="legal-note" style="margin-bottom: 1rem;" data-i18n="save_preferences_msg">Guardamos estas preferencias en este dispositivo para que tu experiencia sea más cómoda.</p>
+                    <a href="a11y-settings.html" class="btn-detail full-width" style="text-decoration: none; display: inline-block; text-align: center;" data-i18n="btn_manage_a11y">
+                        Gestionar accesibilidad y privacidad
+                    </a>
+                </section>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" data-i18n="footer_about">Acerca de nosotros</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_contact">Contacto</a>
+            <span>·</span>
+            <a href="#" data-i18n="footer_faq">FAQ</a>
+            <span>|</span>
+            <a href="#" data-i18n="footer_legal">Aviso Legal</a>
+        </div>
+    </footer>
+
+    <script src="/js/modules/apply-settings.js"></script>
+    <script src="/js/modules/language.js"></script>
+    <script src="/js/modules/traducciones.js"></script>
+    <script src="/js/account-dashboard.js"></script>
+</body>
+</html>

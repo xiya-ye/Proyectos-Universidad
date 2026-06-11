@@ -1,0 +1,566 @@
+/* ===============================
+   BASE GLOBAL IGUAL QUE home.css
+   =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background: #fafafa;
+}
+
+/* Layout genérico (igual que home.css) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ===============================
+   HEADER (COPIADO DE home.css)
+   =============================== */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #333;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-selector {
+    font-size: 14px;
+    color: #666;
+}
+
+.language-selector .active {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Enlaces de usuario / accesibilidad en el header */
+.user-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.user-link:hover {
+    color: #333;
+}
+
+.a11y-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.a11y-link:hover {
+    color: #333;
+    border-color: #ccc;
+}
+
+.btn-comprar {
+    background-color: #d0d0d0;
+    border: none;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-decoration: none;  
+    display: inline-block;
+    color: #333;
+    text-align: center;
+}
+
+.btn-comprar:hover {
+    background-color: #c0c0c0;
+}
+
+/* ===============================
+   LAYOUT PRINCIPAL DASHBOARD
+   =============================== */
+.account-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: #ffffff;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+.breadcrumbs a { color: #888; text-decoration: none; }
+.breadcrumbs span { color: #666; }
+
+/* --- CABECERA SUPERIOR (Título y User Mini) --- */
+.account-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.account-title-block h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.account-title-block p {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Tarjeta flotante de usuario (arriba a la derecha) */
+.user-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-circle {
+    width: 48px;
+    height: 48px;
+    background-color: #bfdbfe; /* Azul pastel */
+    color: #1e40af;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.user-mini-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+}
+.user-mini-info strong { color: #111; }
+.user-mini-info span { color: #888; font-size: 0.8rem; }
+
+/* --- PESTAÑAS (TABS) --- */
+.account-tabs {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.tab-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding-bottom: 10px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.tab-link:hover { color: #333; }
+
+.tab-link.active {
+    color: #2563eb; /* Azul corporativo */
+    font-weight: 600;
+}
+
+/* La línea azul debajo de la pestaña activa */
+.tab-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px; /* Ajuste fino para pisar la línea gris */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #2563eb;
+}
+
+/* --- GRID DASHBOARD (2 Columnas) --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Izquierda doble ancho que derecha */
+    gap: 2rem;
+}
+
+/* Estilo Base de las Tarjetas */
+.dash-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.link-small {
+    font-size: 0.85rem;
+    color: #2563eb;
+    text-decoration: none;
+}
+.link-small:hover { text-decoration: underline; }
+
+.section-subtitle {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+/* --- ESTILOS: PRÓXIMOS VIAJES --- */
+.trips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.trip-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f9fafb; /* Fondo gris muy clarito */
+    border-radius: 8px;
+    align-items: center;
+}
+
+.trip-thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.trip-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-content h4 {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.trip-dates, .trip-id {
+    font-size: 0.8rem;
+    color: #666;
+    display: block;
+}
+
+.trip-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.status-badge.confirmed {
+    background-color: #86efac; /* Verde brillante */
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.btn-detail {
+    background: #e5e7eb;
+    color: #374151;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-detail:hover { background: #d1d5db; }
+.btn-detail.full-width { width: 100%; text-align: center; margin-top: 1rem; }
+
+/* --- VIAJES ANTERIORES --- */
+.past-trip-placeholder {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* --- FAVORITOS --- */
+.fav-toggles {
+    background: #f3f4f6;
+    border-radius: 20px;
+    padding: 2px;
+    display: flex;
+}
+.toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    border-radius: 18px;
+    color: #666;
+    cursor: pointer;
+}
+.toggle-btn.active {
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+}
+
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.fav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 1rem;
+}
+.fav-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.fav-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.fav-content h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #333;
+}
+.fav-content h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+.fav-content span { font-size: 0.8rem; color: #666; }
+
+.fav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.heart-icon { font-size: 1.2rem; color: #111; cursor: pointer; }
+
+/* --- COLUMNA DERECHA --- */
+
+/* Perfil */
+.profile-card { text-align: center; }
+.profile-main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left; /* Alineado izq dentro de la tarjeta */
+}
+.avatar-circle.big { width: 64px; height: 64px; font-size: 1.5rem; }
+
+.profile-text h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 700;
+}
+
+.profile-text span { font-size: 0.8rem; color: #666; }
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.stat-box strong { font-size: 1.2rem; color: #111; }
+.stat-box span { font-size: 0.75rem; color: #888; }
+
+.legal-note {
+    font-size: 0.7rem;
+    color: #999;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* Actividad Foro */
+.forum-activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.forum-activity-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.forum-link {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #111;
+    text-decoration: none;
+    margin-bottom: 2px;
+}
+.forum-link:hover { text-decoration: underline; }
+.forum-activity-list span { font-size: 0.75rem; color: #888; }
+
+/* Preferencias */
+.prefs-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+.prefs-list li {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+/* ===============================
+   FOOTER (CALCADO + FIX SPAN)
+   =============================== */
+footer {
+    background: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Una columna en móvil */
+    }
+    
+    .account-header-row {
+        flex-direction: column;
+    }
+    
+    .trip-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .trip-thumb { width: 100%; height: 120px; }
+    .trip-actions {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+}
