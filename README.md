@@ -25,3 +25,6 @@ En esta asignatura programamos funciones de un sistema de gestión bancaria (tra
 
 ### Inteligencia Artificial (2º)
 En este proyecto programamos en Python un sistema de navegación para que un avión furtivo sobrevolara zonas críticas esquivando radares. Para lograrlo, calculamos y generamos mapas de probabilidad de detección usando NumPy, convertimos ese terreno en un grafo con NetworkX e implementamos el algoritmo de búsqueda A*, diseñando nuestras propias heurísticas admisibles para calcular matemáticamente la ruta más segura.
+
+### Arquitectura de Computadores (3º)
+En este gran proyecto, nos enfocamos en el rendimiento real de la máquina, trabajando con simuladores, analizando el comportamiento de la jerarquía de memoria, entendiendo el pipelining y optimizando algoritmos en C++ para que el procesador no desperdicie ni un solo ciclo de reloj. 
