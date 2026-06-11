@@ -13,3 +13,6 @@ Recreación jugable del mítico Mario Bros. Todo el código está organizado usa
 
 ### Estructura de Computadores (2º)
 En la primera práctica programamos en ensamblador (RISC-V) un calculadora de integrales definidas para funciones cuadráticas, usando el simulador CREATOR desarrollada por la universidad. En la segunda práctica, diseñamos e implementamos desde cero nuevas instrucciones para extender la arquitectura RISC-V. Creamos comandos nuevos para poder trabajar con vectores y pintar directamente en una pantalla para simular un semáforo, usando el simulador WepSIM.
+
+### Ficheros y Bases de Datos (2º)
+En esta asignatura aprendimos a realizar un diseño relacional y a hacer la carga inicial de datos. Luego avanzamos hacia la programación de su operatividad mediante consultas, vistas, procedimientos y disparadores en PL/SQL, y finalemente realizamos una práctica sobre el diseño físico para optimizar el rendimiento del sistema.

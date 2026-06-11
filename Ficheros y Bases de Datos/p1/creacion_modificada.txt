@@ -1,0 +1,397 @@
+﻿CREATE TABLE Bibus(
+matricula CHAR(8), 
+estado VARCHAR2(20) NOT NULL,
+ultima_ITV DATE NOT NULL,
+siguiente_ITV DATE NOT NULL,
+CONSTRAINT pk_Bibus
+PRIMARY KEY (matricula),
+CONSTRAINT ck1_bibus CHECK (siguiente_ITV >= ultima_ITV),
+CONSTRAINT ck2_bibus CHECK (estado IN (‘asignado’, ‘revision’, ‘disponible’))
+);
+
+
+CREATE TABLE Bibusero(
+pasaporte CHAR(20),
+nombre VARCHAR2(80) NOT NULL,
+apellido1 VARCHAR2(80) NOT NULL,
+apellido2 VARCHAR2(80),
+telefono NUMBER(9) NOT NULL,
+email VARCHAR2(100) NOT NULL,
+fecha_inicio DATE NOT NULL,
+fecha_fin DATE,
+estado VARCHAR2(20) NOT NULL,
+CONSTRAINT pk_Bibusero 
+PRIMARY KEY(pasaporte),
+CONSTRAINT ck_fecha_fin CHECK (fecha_fin IS NULL OR fecha_fin > fecha_inicio),
+CONSTRAINT ck_bibusero CHECK (estado IN (‘asignado’, ‘libranza’, ‘sucursal’))
+);
+
+
+CREATE TABLE Municipio(
+nombre VARCHAR2(50),
+provincia VARCHAR2(22),
+poblacion NUMBER(4) NOT NULL,
+tiene_biblioteca CHAR(1) NOT NULL,
+CONSTRAINT pk_Municipio 
+PRIMARY KEY(nombre, provincia),
+CONSTRAINT ck_tiene_biblioteca CHECK (tiene_biblioteca IN (‘Y’, ‘N’))
+);
+
+
+CREATE TABLE Autor (
+nombre VARCHAR2(100),
+apellido VARCHAR2(100),
+fecha_nacimiento DATE,
+fecha_defuncion DATE,
+CONSTRAINT pk_autor 
+PRIMARY KEY (nombre, apellido),
+CONSTRAINT ck_fecha_defuncion CHECK (fecha_defuncion IS NULL OR (fecha_defuncion > fecha_nacimiento) )
+);
+
+
+CREATE TABLE Lengua(
+idioma VARCHAR2(50),
+CONSTRAINT pk_Lengua
+PRIMARY KEY (idioma)
+);
+
+
+CREATE TABLE Tema (
+tema VARCHAR2(100),
+CONSTRAINT pk_Tema
+PRIMARY KEY (tema)
+);
+
+
+CREATE TABLE Ruta(
+bibus_matricula CHAR(8),
+fecha DATE,
+bibusero_pasaporte CHAR(20) NOT NULL,
+CONSTRAINT pk_ruta 
+PRIMARY KEY(bibus_matricula, fecha),
+CONSTRAINT u_ruta
+UNIQUE(fecha, bibusero_pasaporte),
+CONSTRAINT fk_Ruta_Bibus 
+FOREIGN KEY(bibus_matricula) 
+REFERENCES Bibus(matricula),
+CONSTRAINT fk_Ruta_Bibusero
+FOREIGN KEY (bibusero_pasaporte)
+REFERENCES Bibusero(pasaporte)
+);
+
+
+CREATE TABLE Parada(
+municipio_nombre VARCHAR2(50),
+municipio_provincia VARCHAR2(22),
+ruta_bibus_matricula CHAR(8),
+ruta_fecha DATE,
+tiempo TIMESTAMP NOT NULL,
+CONSTRAINT pk_Parada
+PRIMARY KEY (municipio_nombre, ruta_bibus_matricula, ruta_fecha),
+CONSTRAINT fk_Parada_Municipio
+FOREIGN KEY (municipio_nombre, municipio_provincia)
+REFERENCES Municipio(nombre, provincia),
+CONSTRAINT fk_Parada_Ruta
+FOREIGN KEY (ruta_bibus_matricula, ruta_fecha)
+REFERENCES Ruta(bibus_matricula, fecha)
+);
+
+
+CREATE TABLE Biblioteca(
+cif CHAR(20),
+nombre VARCHAR2(80) NOT NULL,
+fecha_fundacion DATE NOT NULL,
+municipio_nombre VARCHAR2(50) NOT NULL,
+municipio_provincia VARCHAR2(22),
+direccion VARCHAR2(100) NOT NULL,
+email VARCHAR2(100) NOT NULL,
+telefono NUMBER(9) NOT NULL,
+CONSTRAINT pk_Biblioteca
+PRIMARY KEY (cif),
+CONSTRAINT fk_Biblioteca_Municipio
+FOREIGN KEY (municipio_nombre, municipio_provincia)
+REFERENCES Municipio(nombre, provincia)
+);
+
+
+CREATE TABLE Libro(
+titulo VARCHAR2(200),
+autor1_nombre VARCHAR2(100),
+autor1_apellido VARCHAR2(100),
+pais VARCHAR2(50) NOT NULL,
+fecha_publicacion DATE,
+lengua VARCHAR2(50),
+titulo_alternativo VARCHAR2(200),
+nota_contenido VARCHAR2(2500),
+mencion_autores VARCHAR2(200),
+CONSTRAINT pk_Libro
+PRIMARY KEY(titulo, autor1_nombre, autor1_apellido),
+CONSTRAINT fk_Libro_Autor
+FOREIGN KEY(autor1_nombre, autor1_apellido)
+REFERENCES Autor(nombre, apellido)
+);
+
+
+
+CREATE TABLE  AutorSecundario(
+autor_nombre VARCHAR2(100), 
+autor_apellido VARCHAR2(100),
+fecha_nacimiento DATE,
+fecha_defuncion DATE,
+libro_titulo VARCHAR2(200) NOT NULL,
+libro_autor1_nombre VARCHAR2(100) NOT NULL,
+libro_autor1_apellido VARCHAR2(100) NOT NULL,
+aportacion VARCHAR2(100),
+CONSTRAINT pk_AutorSecundario
+PRIMARY KEY(autor_nombre, autor_apellido),
+CONSTRAINT fk_AutorSecundario_Libro
+FOREIGN KEY(libro_titulo, libro_autor1_nombre, libro_autor1_apellido)
+REFERENCES Libro(titulo, autor1_nombre, autor1_apellido)
+);
+
+
+CREATE TABLE Premio (
+premio VARCHAR2(100),
+año DATE,
+libro_titulo VARCHAR2(200) NOT NULL,
+libro_autor1_nombre VARCHAR2(100) NOT NULL,
+libro_autor1_apellido VARCHAR2(100) NOT NULL,
+CONSTRAINT pk_Premio
+PRIMARY KEY (premio, año),
+CONSTRAINT fk_Premio_Libro
+FOREIGN KEY (libro_titulo, libro_autor1_nombre, libro_autor1_apellido)
+REFERENCES Libro(titulo, autor1_nombre, autor1_apellido)
+);
+
+
+CREATE TABLE Edicion(
+isbn NUMBER(13),
+libro_titulo VARCHAR2(200) NOT NULL,
+libro_autor1_nombre VARCHAR2(100) NOT NULL,
+libro_autor1_apellido VARCHAR2(100) NOT NULL,
+lengua_principal VARCHAR2(100),
+edicion NUMBER(2),
+editorial VARCHAR2(100) NOT NULL,
+extension NUMBER(4) NOT NULL,
+serie_nombre VARCHAR2(100), 
+serie_numero NUMBER(5), 
+deposito_legal VARCHAR2(12),
+lugar_publicacion VARCHAR2(50),
+dimension VARCHAR2(20),
+caracteristicas_fisicas VARCHAR2(50),
+notas VARCHAR2(500),
+ID_BibliotecaNacional VARCHAR(200) NOT NULL,
+URL VARCHAR2(200),
+CONSTRAINT pk_Edicion
+PRIMARY KEY(isbn),
+CONSTRAINT fk_Edicion_Libro
+FOREIGN KEY(libro_titulo, libro_autor1_nombre, libro_autor1_apellido)
+REFERENCES Libro(titulo, autor1_nombre, autor1_apellido),
+CONSTRAINT fk_Edicion_Lengua
+FOREIGN KEY(lengua_principal)
+REFERENCES Lengua(idioma),
+CONSTRAINT ck_numero_serie CHECK(serie_numero IS NULL OR serie_numero >= 1),
+CONSTRAINT ck_edicion CHECK(edicion IS NULL OR edicion >= 1)
+);
+
+
+CREATE TABLE Ejemplar(
+signatura VARCHAR2(20),
+estado VARCHAR2(20),
+comentario_bibusero VARCHAR2(500) NOT NULL,
+edicion_isbn NUMBER(13) NOT NULL,
+biblioteca_cif CHAR(20),
+bibus_matricula CHAR(8),
+CONSTRAINT pk_Ejemplar
+PRIMARY KEY(signatura),
+CONSTRAINT fk_Ejemplar_Edicion
+FOREIGN KEY(edicion_isbn)
+REFERENCES Edicion(isbn),
+CONSTRAINT fk_Ejemplar_Biblioteca
+FOREIGN KEY(biblioteca_cif)
+REFERENCES Biblioteca(cif),
+CONSTRAINT fk_Ejemplar_Bibus
+FOREIGN KEY(bibus_matricula)
+REFERENCES Bibus(matricula),
+CONSTRAINT ck_ejemplar CHECK (estado IN (‘nuevo’, ‘bueno’, ‘gastado’, ‘muy usado’, ‘deteriorado’))
+);
+
+
+CREATE TABLE Usuario(
+carnet NUMBER(10),
+pasaporte VARCHAR2(20) NOT NULL,
+nombre VARCHAR2(80) NOT NULL,
+apellido1 VARCHAR2(80) NOT NULL,
+apellido2 VARCHAR2(80),
+fecha_nacimiento DATE NOT NULL,
+municipio_nombre VARCHAR2(50) NOT NULL,
+municipio_provincia VARCHAR2(22) NOT NULL,
+direccion VARCHAR2(150) NOT NULL,
+email VARCHAR2(100),
+telefono NUMBER(9) NOT NULL,
+sancionado CHAR(1) NOT NULL,
+CONSTRAINT pk_Usuario
+PRIMARY KEY(carnet),
+CONSTRAINT fk_Usuario_Municipio
+FOREIGN KEY(municipio_nombre, municipio_provincia)
+REFERENCES Municipio(nombre, provincia),
+CONSTRAINT ck_usuario_sancionado CHECK (sancionado IN (‘Y’, ‘N’))
+);
+
+CREATE TABLE Reserva(
+ejemplar_signatura VARCHAR2(20),
+usuario_carnet NUMBER(10) NOT NULL,
+parada_municipio_nombre VARCHAR2(50) NOT NULL,
+parada_ruta_bibus_matricula CHAR(8) NOT NULL,
+parada_ruta_fecha DATE NOT NULL,
+CONSTRAINT pk_reserva
+PRIMARY KEY (ejemplar_signatura),
+CONSTRAINT fk_Reserva_Ejemplar
+FOREIGN KEY (ejemplar_signatura)
+REFERENCES Ejemplar(signatura),
+CONSTRAINT fk_Reserva_Usuario
+FOREIGN KEY (usuario_carnet)
+REFERENCES Usuario(carnet),
+CONSTRAINT fk_Reserva_Parada
+FOREIGN KEY (parada_municipio_nombre, parada_ruta_bibus_matricula, parada_ruta_fecha)
+REFERENCES Parada(municipio_nombre, ruta_bibus_matricula, ruta_fecha)
+);
+
+
+CREATE TABLE Baja(
+ejemplar_signatura VARCHAR2(20),
+fecha_baja DATE NOT NULL,
+CONSTRAINT pk_Baja
+PRIMARY KEY(ejemplar_signatura),
+CONSTRAINT fk_Baja_Ejemplar
+FOREIGN KEY(ejemplar_signatura)
+REFERENCES Ejemplar(signatura)
+);
+
+
+CREATE TABLE Prestamo(
+ejemplar_signatura VARCHAR2(20),
+usuario_carnet NUMBER(10),
+fecha_inicio DATE NOT NULL,
+fecha_fin DATE NOT NULL,
+CONSTRAINT pk_Prestamo 
+PRIMARY KEY(ejemplar_signatura, usuario_carnet),
+CONSTRAINT fk_Prestamo_Ejemplar 
+FOREIGN KEY (ejemplar_signatura)
+REFERENCES Ejemplar(signatura),
+CONSTRAINT fk_Prestamo_Usuario
+FOREIGN KEY (usuario_carnet)
+REFERENCES Usuario(carnet),
+CONSTRAINT ck_fecha_fin_prestamo CHECK(fecha_fin = fecha_inicio + 14)
+);
+
+
+CREATE TABLE Comentario(
+libro_prestamo VARCHAR2(20),
+usuario_prestamo NUMBER(10) NOT NULL,
+texto VARCHAR2(2000) NOT NULL, 
+likes NUMBER(7),
+dislikes NUMBER(7),
+CONSTRAINT pk_Comentario
+PRIMARY KEY(libro_prestamo),
+CONSTRAINT fk_Comentario_Prestamo
+FOREIGN KEY(libro_prestamo, usuario_prestamo)
+REFERENCES Prestamo(ejemplar_signatura, usuario_carnet),
+CONSTRAINT ck_comentario_likes CHECK (likes IS NULL OR likes >= 1),
+CONSTRAINT ck_comentario_dislikes CHECK (dislikes IS NULL OR dislikes >= 1)
+);
+
+
+CREATE TABLE Devolucion(
+prestamo_ejemplar_signatura VARCHAR2(20),
+fecha_devolucion DATE NOT NULL,
+prestamo_carnet NUMBER(10) NOT NULL,
+CONSTRAINT pk_Devolucion 
+PRIMARY KEY (prestamo_ejemplar_signatura, fecha_devolucion),
+CONSTRAINT fk_Devolucion_Prestamo 
+FOREIGN KEY (prestamo_ejemplar_signatura, prestamo_carnet)
+REFERENCES Prestamo(ejemplar_signatura, usuario_carnet)
+);
+
+CREATE TABLE Sancion (
+prestamo_ejemplar_signatura VARCHAR2(20),
+prestamo_carnet NUMBER(10),
+fecha_inicio DATE NOT NULL,
+fecha_fin DATE,
+CONSTRAINT pk_Sancion 
+PRIMARY KEY (prestamo_carnet),
+CONSTRAINT fk_Sancion_Prestamo
+FOREIGN KEY (prestamo_ejemplar_signatura, prestamo_carnet)
+REFERENCES Prestamo(ejemplar_signatura, usuario_carnet),
+CONSTRAINT fk_Sancion_Devolucion
+FOREIGN KEY (prestamo_ejemplar_signatura, fecha_inicio)
+REFERENCES Devolucion(prestamo_ejemplar_signatura, fecha_devolucion),
+CONSTRAINT ck_sancion CHECK (fecha_fin > fecha_inicio)
+);
+
+
+CREATE TABLE PrestamoBiblioteca(
+ejemplar_signatura VARCHAR2(20),
+biblioteca_cif CHAR(20) NOT NULL,
+fecha_inicio DATE NOT NULL,
+CONSTRAINT pk_PrestamoBiblioteca
+PRIMARY KEY(ejemplar_signatura, biblioteca_cif),
+CONSTRAINT fk_PrestamoBiblioteca_Ejemplar
+FOREIGN KEY(ejemplar_signatura)
+REFERENCES Ejemplar(signatura),
+CONSTRAINT fk_PrestamoBiblioteca_Biblioteca
+FOREIGN KEY(biblioteca_cif)
+REFERENCES Biblioteca(cif)
+);
+
+CREATE TABLE DevolucionBiblioteca (
+prestamo_biblioteca_ejemplar_signatura VARCHAR2(20),
+fecha_devolucion DATE NOT NULL,
+prestamo_biblioteca_cif CHAR(20) NOT NULL,
+CONSTRAINT pk_Devolucion_Biblioteca
+PRIMARY KEY (prestamo_biblioteca_ejemplar_signatura),
+CONSTRAINT fk_DevolucionBiblioteca_PrestamoBiblioteca
+FOREIGN KEY (prestamo_biblioteca_ejemplar_signatura, prestamo_biblioteca_cif)
+REFERENCES PrestamoBiblioteca(ejemplar_signatura, biblioteca_cif)
+);
+
+
+CREATE TABLE LenguaSecundaria (
+idioma VARCHAR2(50),
+edicion_isbn NUMBER(13),
+CONSTRAINT pk_LenguaSecundaria
+PRIMARY KEY (idioma, edicion_isbn),
+CONSTRAINT fk_LenguaSecundaria_Edicion
+FOREIGN KEY (edicion_isbn)
+REFERENCES Edicion(isbn),
+CONSTRAINT fk_LenguaSecundaria_Lengua
+FOREIGN KEY (idioma)
+REFERENCES Lengua(idioma)
+);
+
+
+CREATE TABLE TemasLibros (
+tema VARCHAR2(50),
+libro_titulo VARCHAR2(200),
+libro_autor1_nombre VARCHAR2(100),
+libro_autor1_apellido VARCHAR2(100),
+CONSTRAINT pk_TemasLibros
+PRIMARY KEY (tema, libro_titulo, libro_autor1_nombre, libro_autor1_apellido),
+CONSTRAINT fk_TemasLibros_Tema
+FOREIGN KEY (tema)
+REFERENCES Tema(tema),
+CONSTRAINT fk_TemasLibros_Libro
+FOREIGN KEY (libro_titulo, libro_autor1_nombre, libro_autor1_apellido)
+REFERENCES Libro(titulo, autor1_nombre, autor1_apellido)
+);
+
+
+CREATE TABLE MaterialAjeno (
+material VARCHAR2(100),
+edicion_isbn NUMBER(13),
+CONSTRAINT pk_MaterialAjeno
+PRIMARY KEY (material, edicion_isbn),
+CONSTRAINT fk_MaterialAjeno_Edicion
+FOREIGN KEY (edicion_isbn)
+REFERENCES Edicion(isbn)
+);

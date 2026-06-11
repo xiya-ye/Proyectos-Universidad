@@ -1,0 +1,56 @@
+﻿BIBUS: no existe un valor estado es la base de datos, así que ponemos por defecto disponible a todos.
+
+
+insert into bibus(matricula, estado, ultima_itv, siguiente_itv)
+select plate, 'disponible', to_date(substr(max(last_itv),1,10),'DD.MM.YYYY'), to_date(max(next_itv),'DD.MM.YYYY') from fsdb.busstops group by plate;
+
+
+BIBUSERO:
+insert into bibusero(pasaporte, nombre || apellido, telefono, email, fecha_inicio, fecha_fin)
+select lib_passport, lib_fullname, to_number(lib_phone), lib_email, to_date(substr(max(cont_start),1,10),'DD.MM.YYYY'),  to_date(max(cont_fin),'DD.MM.YYYY') from fsdb.busstops group by plate;
+
+
+
+
+MUNICIPIO:
+insert into municipio(select distinct town as nombre, province as provincia, to_number(population) as poblacion, has_library as tiene_biblioteca from fsdb.busstops);
+
+
+AUTOR:
+insert into autor ((SELECT SUBSTR( MAIN_AUTHOR, INSTR(MAIN_AUTHOR, ',', 1, 1) + 1, INSTR(MAIN_AUTHOR, ',', 1, 2) - INSTR(MAIN_AUTHOR, ',', 1, 1) - 1) AS nombre, (SUBSTR(MAIN_AUTHOR, 1, (instr(MAIN_AUTHOR,',', 1)-1)))) as apellido, max((SUBSTR( MAIN_AUTHOR, INSTR(MAIN_AUTHOR, '(', 1, 1) + 1, INSTR(MAIN_AUTHOR, '-', 1, 2) - INSTR(MAIN_AUTHOR, '(', 1, 1) - 1))) AS fecha_nacimiento, max((SUBSTR( MAIN_AUTHOR, INSTR(MAIN_AUTHOR, '-', 1, 1) + 1, INSTR(MAIN_AUTHOR, ')', 1, 2) - INSTR(MAIN_AUTHOR, '-', 1, 1) - 1))) AS fecha_defuncion) from fsdb.acervus group by nombre, apellido ;
+
+
+LENGUA:
+insert into Lengua select distinct MAIN_LANGUAGE from fsdb.acervus union select distinct OTHER_LANGUAGES from fsdb.acervus union select distinct ORIGINAL_LANGUAGE from fsdb.acervus;
+
+
+TEMA:
+insert into Tema select distinct TOPIC from fsdb.acervus;
+
+
+RUTA:
+insert into ruta(bibus_matricula, fecha, bibusero_pasaporte)
+select plate, to_date(substr(max(stopdate),1,10),'DD.MM.YYYY'),  lib_passport from fsdb.busstops group by plate;
+
+
+PARADA:
+insert into parada(municipio_nombre, municipio_provincia, ruta_bibus_matricula, ruta_fecha, tiempo) select distinct town, province, plate, to_date(substr(max(stopdate),1,10),'DD.MM.YYYY') from fsdb.busstops;
+
+
+BIBLIOTECA:
+No se nos proporcionan datos en referencia a la biblioteca
+
+
+LIBRO:
+insert into libro(titulo, autor1_nombre || autor1_apellido, pais, fecha_publicación, lengua, titulo_alternativo, nota_contenido, mencion_autores) select title, main_author, pub_country, to_date(substr(max(pub_date),1,10),'DD.MM.YYYY'), main_language, alt_title, content_notes, mention_authors from fsdb.acervus group by title;
+
+
+AUTOR SECUNDARIO:
+insert into autorsecundario ((SELECT SUBSTR( MAIN_AUTHOR, INSTR(MAIN_AUTHOR, ',', 1, 1) + 1, INSTR(MAIN_AUTHOR, ',', 1, 2) - INSTR(MAIN_AUTHOR, ',', 1, 1) - 1) AS nombre, (SUBSTR(MAIN_AUTHOR, 1, (instr(MAIN_AUTHOR,',', 1)-1)))) as apellido, max((SUBSTR( MAIN_AUTHOR, INSTR(MAIN_AUTHOR, '(', 1, 1) + 1, INSTR(MAIN_AUTHOR, '-', 1, 2) - INSTR(MAIN_AUTHOR, '(', 1, 1) - 1))) AS fecha_nacimiento, max((SUBSTR( MAIN_AUTHOR, INSTR(MAIN_AUTHOR, '-', 1, 1) + 1, INSTR(MAIN_AUTHOR, ')', 1, 2) - INSTR(MAIN_AUTHOR, '-', 1, 1) - 1))) AS fecha_defuncion) from fsdb.acervus group by nombre, apellido ;
+
+
+insert into autorsecundario(libro_titulo, libro_autor1_nombre || libro_autor1_apellido) select title, main_author from fsdb.acervus group by title;
+
+
+PREMIO:
+insert into premio(premio || año, libro_titulo, libro_autor1_nombre || libro_autor1_apellido) select awards, main_author from fsdb.acervus group by awards;
