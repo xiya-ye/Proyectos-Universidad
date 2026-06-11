@@ -19,3 +19,6 @@ En esta asignatura aprendimos a realizar un diseño relacional y a hacer la carg
 
 ### Sistemas Operativos (2º)
 Aquí aprendimos qué va por debajo de nuestro ordenador. Programando en C sobre Linux, llamamos al sistema POSIX para la gestión de ficheros, construimos nuestro propio intérprete de comandos y un simulador multihilo donde usamos semáforos, variables de condición y mutexes para controlar la concurrencia.
+
+### Desarrollo de Software (2º)
+En esta asignatura programamos funciones de un sistema de gestión bancaria (transferencias, ingresos y cálculo de saldos), pero automatizando la ejecución de pruebas con PyBuilder. Aprendimos a trabajar en equipo usando GiyHub. En estos proyectos aplicamos las técnicas de Refactoring y Diseño Simple para mejorar su estructura sin alterar su funcionamiento.

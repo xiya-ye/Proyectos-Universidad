@@ -1,0 +1,18 @@
+[
+  {
+    "alg": "SHA-256",
+    "type": "DEPOSIT",
+    "to_iban": "ES9121000418450200051332",
+    "deposit_amount": "EUR 1000.25",
+    "deposit_date": 1740960000.0,
+    "deposit_signature": "b104a49ed37ac5cad72fb50d8149b7ee1e947d67a4d1e7faab8f5dcc385881be"
+  },
+  {
+    "alg": "SHA-256",
+    "type": "DEPOSIT",
+    "to_iban": "ES9121000418450200051332",
+    "deposit_amount": "EUR 1000.25",
+    "deposit_date": 1740960000.0,
+    "deposit_signature": "b104a49ed37ac5cad72fb50d8149b7ee1e947d67a4d1e7faab8f5dcc385881be"
+  }
+]
