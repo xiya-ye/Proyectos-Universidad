@@ -37,3 +37,7 @@ Por un lado, aplicamos la Programación Lineal (modelando matemáticamente y usa
 
 ### Interfaces de Usuario (3º)
 Para esta asignatura, diseñamos e implementamos un sitio web interactivo. Primero trabajamos la usabilidad creando prototipos basados en patrones de diseño, accesibilidad y las heurísticas de Nielsen. Después, desarrollamos todo el frontend utilizando HTML5, CSS3 y JavaScript.
+
+### Aprendizaje Automático (3º)
+En esta asignatura aplicamos tanto el aprendizaje supervisado como el no supervisado. Por un lado, entrenamos modelos predictivos (KNN, Árboles de Decisión, SVM) para calcular el éxito de campañas bancarias, llegando a desplegar la solución final en una app web con Streamlit. Por otro lado, utilizamos algoritmos de clustering para agrupar y clasificar distintos tipos de estrellas basándonos en sus propiedades astronómicas.
+
