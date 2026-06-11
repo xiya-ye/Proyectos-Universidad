@@ -43,3 +43,6 @@ En esta asignatura aplicamos tanto el aprendizaje supervisado como el no supervi
 
 ### Procesadores de Lenguaje (3º)
 En este asignatura, desarrollamos un traductor completo en dos fases. Primero, un frontend que convierte un subconjunto del lenguaje C a código intermedio en LISP. Después, un backend que traduce ese LISP a notación postfija para su ejecución final. Para ello, hemos usado el compilador de Bison.
+
+### Sistemas Distribuidos (3º)
+En estas prácticas, diseñamos arquitecturas cliente-servidor concurrentes en C. Desarrollamos desde un almacén de tuplas clave-valor hasta una plataforma de envío de mensajes con transferencia de ficheros. Lo más interesante fue programar la evolución de las comunicaciones: emepzamos usando Colas de Mensajes POSIX, pasamos a programar la red a bajo nivel con Sockets TCP, y terminamos integrando Llamadas a Procedimientos Remotos y Servicios Web.
