@@ -1,8 +1,7 @@
 # Proyectos-Universidad
 
-¡Hola! Soy estudiante de **Ingeniería Informática** y aquí comparto una selección de los trabajos prácticos, algoritmos y sistemas que he ido desarrollando a lo largo de mi formación académica.
+En este repositorio se recogen los trabajos prácticos, algoritmos y sistemas que he ido desarrollando a lo largo de mi formación académica en el Grado de Ingeniería Informática en la Universidad Carlos III de Madrid.
 
-El objetivo de este espacio es demostrar la aplicación práctica de los conceptos teóricos aprendidos en la universidad, reflejando mi evolución con diferentes tecnologías, lenguajes de programación y paradigmas de desarrollo.
 
 ## Estructura del Repositorio
 
